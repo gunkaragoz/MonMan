@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>GUN-W8</Machine>
+    <WindowsUser>Gün</WindowsUser>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <PackageIdentityName>d0464449-5b1d-400f-94f5-898e44186049</PackageIdentityName>
+    <RegisteredManifestChecksum>1F19D56C88F2FFDAB71EF2FDAE41611472D14101D531B966A31F399185A5F626</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>d0464449-5b1d-400f-94f5-898e44186049_1.0.0.0_neutral__yps17xarsp2at</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>d0464449-5b1d-400f-94f5-898e44186049_yps17xarsp2at!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>d0464449-5b1d-400f-94f5-898e44186049</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=test</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-12-12T12:24:50.900</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\monman.exe">
+      <PackagePath>monman.exe</PackagePath>
+      <Modified>2013-12-12T22:46:41.741</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\packages\Microsoft.Bcl.Async.1.0.16\lib\win8\Microsoft.Threading.Tasks.dll">
+      <PackagePath>Microsoft.Threading.Tasks.dll</PackagePath>
+      <Modified>2013-12-12T12:24:41.127</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\packages\Microsoft.Bcl.Async.1.0.16\lib\win8\Microsoft.Threading.Tasks.Extensions.dll">
+      <PackagePath>Microsoft.Threading.Tasks.Extensions.dll</PackagePath>
+      <Modified>2013-12-12T12:24:41.144</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\packages\WindowsAzure.MobileServices.1.1.0\lib\netcore45\Microsoft.WindowsAzure.Mobile.dll">
+      <PackagePath>Microsoft.WindowsAzure.Mobile.dll</PackagePath>
+      <Modified>2013-12-12T12:24:40.641</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\packages\WindowsAzure.MobileServices.1.1.0\lib\netcore45\Microsoft.WindowsAzure.Mobile.Ext.dll">
+      <PackagePath>Microsoft.WindowsAzure.Mobile.Ext.dll</PackagePath>
+      <Modified>2013-12-12T12:24:40.676</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\packages\Newtonsoft.Json.5.0.8\lib\netcore45\Newtonsoft.Json.dll">
+      <PackagePath>Newtonsoft.Json.dll</PackagePath>
+      <Modified>2013-12-12T12:24:39.925</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\packages\Microsoft.Net.Http.2.2.15\lib\win8\System.Net.Http.Extensions.dll">
+      <PackagePath>System.Net.Http.Extensions.dll</PackagePath>
+      <Modified>2013-12-12T12:24:41.115</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\packages\Microsoft.Net.Http.2.2.15\lib\win8\System.Net.Http.Primitives.dll">
+      <PackagePath>System.Net.Http.Primitives.dll</PackagePath>
+      <Modified>2013-12-12T12:24:41.134</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\Assets\Logo.scale-100.png">
+      <PackagePath>Assets\Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-11-21T14:25:12.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\Assets\SmallLogo.scale-100.png">
+      <PackagePath>Assets\SmallLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-11-21T14:25:12.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\Assets\SplashScreen.scale-100.png">
+      <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-11-21T14:25:12.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\Assets\StoreLogo.scale-100.png">
+      <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-11-21T14:25:12.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\App.xbf">
+      <PackagePath>App.xbf</PackagePath>
+      <Modified>2013-12-12T12:24:47.522</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\Common\QuickStartTask.xbf">
+      <PackagePath>Common\QuickStartTask.xbf</PackagePath>
+      <Modified>2013-12-12T12:24:47.528</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\Common\StandardStyles.xbf">
+      <PackagePath>Common\StandardStyles.xbf</PackagePath>
+      <Modified>2013-12-12T12:24:47.534</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\MainPage.xbf">
+      <PackagePath>MainPage.xbf</PackagePath>
+      <Modified>2013-12-12T20:50:26.882</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2013-12-12T22:46:42.344</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
