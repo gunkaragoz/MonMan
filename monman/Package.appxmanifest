@@ -2,7 +2,7 @@
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
   <Identity Name="d0464449-5b1d-400f-94f5-898e44186049" Publisher="CN=test" Version="1.0.0.0" />
   <Properties>
-    <DisplayName>monman</DisplayName>
+    <DisplayName>MonMan</DisplayName>
     <PublisherDisplayName>Mobile Services</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="monman.App">
-      <m2:VisualElements DisplayName="monman" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="monman" ForegroundText="light" BackgroundColor="#464646">
+      <m2:VisualElements DisplayName="MonMan" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="Money Manager for Individuals" ForegroundText="light" BackgroundColor="#464646" ToastCapable="true">
         <m2:SplashScreen Image="Assets\SplashScreen.png" />
       </m2:VisualElements>
     </Application>

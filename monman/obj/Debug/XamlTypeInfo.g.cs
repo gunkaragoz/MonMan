@@ -9,17 +9,17 @@
 
 
 
-namespace monman
+namespace MonMan
 {
     public partial class App : global::Windows.UI.Xaml.Markup.IXamlMetadataProvider
     {
-        private global::monman.monman_XamlTypeInfo.XamlTypeInfoProvider _provider;
+        private global::MonMan.MonMan_XamlTypeInfo.XamlTypeInfoProvider _provider;
 
         public global::Windows.UI.Xaml.Markup.IXamlType GetXamlType(global::System.Type type)
         {
             if(_provider == null)
             {
-                _provider = new global::monman.monman_XamlTypeInfo.XamlTypeInfoProvider();
+                _provider = new global::MonMan.MonMan_XamlTypeInfo.XamlTypeInfoProvider();
             }
             return _provider.GetXamlTypeByType(type);
         }
@@ -28,7 +28,7 @@ namespace monman
         {
             if(_provider == null)
             {
-                _provider = new global::monman.monman_XamlTypeInfo.XamlTypeInfoProvider();
+                _provider = new global::MonMan.MonMan_XamlTypeInfo.XamlTypeInfoProvider();
             }
             return _provider.GetXamlTypeByName(fullName);
         }
@@ -40,7 +40,7 @@ namespace monman
     }
 }
 
-namespace monman.monman_XamlTypeInfo
+namespace MonMan.MonMan_XamlTypeInfo
 {
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Windows.UI.Xaml.Build.Tasks", "4.0.0.0")]    
@@ -124,21 +124,31 @@ namespace monman.monman_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[6];
-            _typeNameTable[0] = "monman.QuickStartTask";
-            _typeNameTable[1] = "Windows.UI.Xaml.Controls.UserControl";
-            _typeNameTable[2] = "Int32";
-            _typeNameTable[3] = "String";
-            _typeNameTable[4] = "monman.MainPage";
-            _typeNameTable[5] = "Windows.UI.Xaml.Controls.Page";
+            _typeNameTable = new string[11];
+            _typeNameTable[0] = "MonMan.LoginPage";
+            _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
+            _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
+            _typeNameTable[3] = "MonMan.Common.ObservableDictionary";
+            _typeNameTable[4] = "Object";
+            _typeNameTable[5] = "String";
+            _typeNameTable[6] = "MonMan.Common.NavigationHelper";
+            _typeNameTable[7] = "Windows.UI.Xaml.DependencyObject";
+            _typeNameTable[8] = "MonMan.QuickStartTask";
+            _typeNameTable[9] = "Int32";
+            _typeNameTable[10] = "MonMan.MainPage";
 
-            _typeTable = new global::System.Type[6];
-            _typeTable[0] = typeof(global::monman.QuickStartTask);
-            _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
-            _typeTable[2] = typeof(global::System.Int32);
-            _typeTable[3] = typeof(global::System.String);
-            _typeTable[4] = typeof(global::monman.MainPage);
-            _typeTable[5] = typeof(global::Windows.UI.Xaml.Controls.Page);
+            _typeTable = new global::System.Type[11];
+            _typeTable[0] = typeof(global::MonMan.LoginPage);
+            _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
+            _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
+            _typeTable[3] = typeof(global::MonMan.Common.ObservableDictionary);
+            _typeTable[4] = typeof(global::System.Object);
+            _typeTable[5] = typeof(global::System.String);
+            _typeTable[6] = typeof(global::MonMan.Common.NavigationHelper);
+            _typeTable[7] = typeof(global::Windows.UI.Xaml.DependencyObject);
+            _typeTable[8] = typeof(global::MonMan.QuickStartTask);
+            _typeTable[9] = typeof(global::System.Int32);
+            _typeTable[10] = typeof(global::MonMan.MainPage);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -173,112 +183,172 @@ namespace monman.monman_XamlTypeInfo
             return -1;
         }
 
-        private object Activate_0_QuickStartTask() { return new global::monman.QuickStartTask(); }
-        private object Activate_4_MainPage() { return new global::monman.MainPage(); }
+        private object Activate_0_LoginPage() { return new global::MonMan.LoginPage(); }
+        private object Activate_3_ObservableDictionary() { return new global::MonMan.Common.ObservableDictionary(); }
+        private object Activate_8_QuickStartTask() { return new global::MonMan.QuickStartTask(); }
+        private object Activate_10_MainPage() { return new global::MonMan.MainPage(); }
+        private void MapAdd_3_ObservableDictionary(object instance, object key, object item)
+        {
+            var collection = (global::System.Collections.Generic.IDictionary<global::System.String, global::System.Object>)instance;
+            var newKey = (global::System.String)key;
+            var newItem = (global::System.Object)item;
+            collection.Add(newKey, newItem);
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
-            global::monman.monman_XamlTypeInfo.XamlSystemBaseType xamlType = null;
-            global::monman.monman_XamlTypeInfo.XamlUserType userType;
+            global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType xamlType = null;
+            global::MonMan.MonMan_XamlTypeInfo.XamlUserType userType;
             string typeName = _typeNameTable[typeIndex];
             global::System.Type type = _typeTable[typeIndex];
 
             switch (typeIndex)
             {
 
-            case 0:   //  monman.QuickStartTask
-                userType = new global::monman.monman_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_0_QuickStartTask;
+            case 0:   //  MonMan.LoginPage
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_0_LoginPage;
+                userType.AddMemberName("DefaultViewModel");
+                userType.AddMemberName("NavigationHelper");
+                xamlType = userType;
+                break;
+
+            case 1:   //  Windows.UI.Xaml.Controls.Page
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 2:   //  Windows.UI.Xaml.Controls.UserControl
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 3:   //  MonMan.Common.ObservableDictionary
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.DictionaryAdd = MapAdd_3_ObservableDictionary;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 4:   //  Object
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 5:   //  String
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 6:   //  MonMan.Common.NavigationHelper
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 7:   //  Windows.UI.Xaml.DependencyObject
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 8:   //  MonMan.QuickStartTask
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_8_QuickStartTask;
                 userType.AddMemberName("Number");
                 userType.AddMemberName("Title");
                 userType.AddMemberName("Description");
                 xamlType = userType;
                 break;
 
-            case 1:   //  Windows.UI.Xaml.Controls.UserControl
-                xamlType = new global::monman.monman_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+            case 9:   //  Int32
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 2:   //  Int32
-                xamlType = new global::monman.monman_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 3:   //  String
-                xamlType = new global::monman.monman_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 4:   //  monman.MainPage
-                userType = new global::monman.monman_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_4_MainPage;
+            case 10:   //  MonMan.MainPage
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_10_MainPage;
                 xamlType = userType;
-                break;
-
-            case 5:   //  Windows.UI.Xaml.Controls.Page
-                xamlType = new global::monman.monman_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
             }
             return xamlType;
         }
 
 
-        private object get_0_QuickStartTask_Number(object instance)
+        private object get_0_LoginPage_DefaultViewModel(object instance)
         {
-            var that = (global::monman.QuickStartTask)instance;
+            var that = (global::MonMan.LoginPage)instance;
+            return that.DefaultViewModel;
+        }
+        private object get_1_LoginPage_NavigationHelper(object instance)
+        {
+            var that = (global::MonMan.LoginPage)instance;
+            return that.NavigationHelper;
+        }
+        private object get_2_QuickStartTask_Number(object instance)
+        {
+            var that = (global::MonMan.QuickStartTask)instance;
             return that.Number;
         }
-        private void set_0_QuickStartTask_Number(object instance, object Value)
+        private void set_2_QuickStartTask_Number(object instance, object Value)
         {
-            var that = (global::monman.QuickStartTask)instance;
+            var that = (global::MonMan.QuickStartTask)instance;
             that.Number = (global::System.Int32)Value;
         }
-        private object get_1_QuickStartTask_Title(object instance)
+        private object get_3_QuickStartTask_Title(object instance)
         {
-            var that = (global::monman.QuickStartTask)instance;
+            var that = (global::MonMan.QuickStartTask)instance;
             return that.Title;
         }
-        private void set_1_QuickStartTask_Title(object instance, object Value)
+        private void set_3_QuickStartTask_Title(object instance, object Value)
         {
-            var that = (global::monman.QuickStartTask)instance;
+            var that = (global::MonMan.QuickStartTask)instance;
             that.Title = (global::System.String)Value;
         }
-        private object get_2_QuickStartTask_Description(object instance)
+        private object get_4_QuickStartTask_Description(object instance)
         {
-            var that = (global::monman.QuickStartTask)instance;
+            var that = (global::MonMan.QuickStartTask)instance;
             return that.Description;
         }
-        private void set_2_QuickStartTask_Description(object instance, object Value)
+        private void set_4_QuickStartTask_Description(object instance, object Value)
         {
-            var that = (global::monman.QuickStartTask)instance;
+            var that = (global::MonMan.QuickStartTask)instance;
             that.Description = (global::System.String)Value;
         }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
-            global::monman.monman_XamlTypeInfo.XamlMember xamlMember = null;
-            global::monman.monman_XamlTypeInfo.XamlUserType userType;
+            global::MonMan.MonMan_XamlTypeInfo.XamlMember xamlMember = null;
+            global::MonMan.MonMan_XamlTypeInfo.XamlUserType userType;
 
             switch (longMemberName)
             {
-            case "monman.QuickStartTask.Number":
-                userType = (global::monman.monman_XamlTypeInfo.XamlUserType)GetXamlTypeByName("monman.QuickStartTask");
-                xamlMember = new global::monman.monman_XamlTypeInfo.XamlMember(this, "Number", "Int32");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_0_QuickStartTask_Number;
-                xamlMember.Setter = set_0_QuickStartTask_Number;
+            case "MonMan.LoginPage.DefaultViewModel":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("MonMan.LoginPage");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "MonMan.Common.ObservableDictionary");
+                xamlMember.Getter = get_0_LoginPage_DefaultViewModel;
+                xamlMember.SetIsReadOnly();
                 break;
-            case "monman.QuickStartTask.Title":
-                userType = (global::monman.monman_XamlTypeInfo.XamlUserType)GetXamlTypeByName("monman.QuickStartTask");
-                xamlMember = new global::monman.monman_XamlTypeInfo.XamlMember(this, "Title", "String");
-                xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_1_QuickStartTask_Title;
-                xamlMember.Setter = set_1_QuickStartTask_Title;
+            case "MonMan.LoginPage.NavigationHelper":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("MonMan.LoginPage");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "NavigationHelper", "MonMan.Common.NavigationHelper");
+                xamlMember.Getter = get_1_LoginPage_NavigationHelper;
+                xamlMember.SetIsReadOnly();
                 break;
-            case "monman.QuickStartTask.Description":
-                userType = (global::monman.monman_XamlTypeInfo.XamlUserType)GetXamlTypeByName("monman.QuickStartTask");
-                xamlMember = new global::monman.monman_XamlTypeInfo.XamlMember(this, "Description", "String");
+            case "MonMan.QuickStartTask.Number":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("MonMan.QuickStartTask");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "Number", "Int32");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_2_QuickStartTask_Description;
-                xamlMember.Setter = set_2_QuickStartTask_Description;
+                xamlMember.Getter = get_2_QuickStartTask_Number;
+                xamlMember.Setter = set_2_QuickStartTask_Number;
+                break;
+            case "MonMan.QuickStartTask.Title":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("MonMan.QuickStartTask");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "Title", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_3_QuickStartTask_Title;
+                xamlMember.Setter = set_3_QuickStartTask_Title;
+                break;
+            case "MonMan.QuickStartTask.Description":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("MonMan.QuickStartTask");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "Description", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_4_QuickStartTask_Description;
+                xamlMember.Setter = set_4_QuickStartTask_Description;
                 break;
             }
             return xamlMember;
@@ -335,9 +405,9 @@ namespace monman.monman_XamlTypeInfo
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Windows.UI.Xaml.Build.Tasks", "4.0.0.0")]    
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    internal class XamlUserType : global::monman.monman_XamlTypeInfo.XamlSystemBaseType
+    internal class XamlUserType : global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType
     {
-        global::monman.monman_XamlTypeInfo.XamlTypeInfoProvider _provider;
+        global::MonMan.MonMan_XamlTypeInfo.XamlTypeInfoProvider _provider;
         global::Windows.UI.Xaml.Markup.IXamlType _baseType;
         bool _isArray;
         bool _isMarkupExtension;
@@ -350,7 +420,7 @@ namespace monman.monman_XamlTypeInfo
         global::System.Collections.Generic.Dictionary<string, string> _memberNames;
         global::System.Collections.Generic.Dictionary<string, object> _enumValues;
 
-        public XamlUserType(global::monman.monman_XamlTypeInfo.XamlTypeInfoProvider provider, string fullName, global::System.Type fullType, global::Windows.UI.Xaml.Markup.IXamlType baseType)
+        public XamlUserType(global::MonMan.MonMan_XamlTypeInfo.XamlTypeInfoProvider provider, string fullName, global::System.Type fullType, global::Windows.UI.Xaml.Markup.IXamlType baseType)
             :base(fullName, fullType)
         {
             _provider = provider;
@@ -537,7 +607,7 @@ namespace monman.monman_XamlTypeInfo
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
     internal class XamlMember : global::Windows.UI.Xaml.Markup.IXamlMember
     {
-        global::monman.monman_XamlTypeInfo.XamlTypeInfoProvider _provider;
+        global::MonMan.MonMan_XamlTypeInfo.XamlTypeInfoProvider _provider;
         string _name;
         bool _isAttachable;
         bool _isDependencyProperty;
@@ -546,7 +616,7 @@ namespace monman.monman_XamlTypeInfo
         string _typeName;
         string _targetTypeName;
 
-        public XamlMember(global::monman.monman_XamlTypeInfo.XamlTypeInfoProvider provider, string name, string typeName)
+        public XamlMember(global::MonMan.MonMan_XamlTypeInfo.XamlTypeInfoProvider provider, string name, string typeName)
         {
             _name = name;
             _typeName = typeName;

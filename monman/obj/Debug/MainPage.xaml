@@ -1,9 +1,9 @@
 ﻿<Page
-    x:Class="monman.MainPage"
+    x:Class="MonMan.MainPage"
     IsTabStop="false"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:monman"
+    xmlns:local="using:MonMan"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -20,26 +20,29 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,20">
+            <Grid x:Name="HeaderGrid" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,20">
                 <StackPanel>
-                    <TextBlock Foreground="Gray" FontFamily="Segoe UI Light" FontSize="45" >
-                    	<Run Text="M"/>
-                    	<Run Text="on"/>
-                    	<Run Text="M"/>
-                    	<Run Text="an"/>
-                    </TextBlock>
+                    <TextBlock x:Name="apptitle" Text="MonMan" Foreground="Gray" FontFamily="Segoe UI Light" FontSize="45" />
+                    <TextBlock x:Name="userNameTb" TextWrapping="Wrap" Text="Hey!" HorizontalAlignment="Right" FontSize="20" Margin="0,0,-1,0"/>
                 </StackPanel>
             </Grid>
 
 
-            <Grid Grid.Row="1">
-                <StackPanel>
-
-                    <local:QuickStartTask Number="1" Title="Insert a TodoItem" Description="Enter some text below and click Save to insert a new todo item into your database" />
+            <Grid Grid.Row="1" HorizontalAlignment="Left">
+                <StackPanel Width="400" HorizontalAlignment="Left">
 
                     <StackPanel Orientation="Horizontal" Margin="12,0,0,0">
                         <TextBox x:Name="TextInput" Margin="5" MinWidth="300" />
-                        <Button x:ConnectionId='3' x:Name="ButtonSave"                          Content="Save"/>
+                        <Button x:ConnectionId='5' x:Name="ButtonSave"                          Content="Save"/>
+                    </StackPanel>
+                    <StackPanel Height="391" Width="315" HorizontalAlignment="Left">
+                    	<DatePicker x:Name="dateSelection" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+                        <ComboBox x:ConnectionId='3' x:Name="comboType" Margin="0,10,0,0" PlaceholderText="Income / Expense"                                              />
+                    	<ComboBox x:Name="comboCategory" Margin="0,10,0,0" PlaceholderText="Select Category"/>
+                    	<TextBox x:Name="textAmount" TextWrapping="Wrap" Margin="0,10,0,0" PlaceholderText="Enter Amount"/>
+                    	<TextBox x:Name="textDescription" TextWrapping="Wrap" Margin="0,10,0,0" PlaceholderText="Description ( Optional)"/>
+                    	<ToggleSwitch x:Name="togglePayed" Header="" HorizontalAlignment="Left" VerticalAlignment="Stretch" OffContent="Not Payed" OnContent="Payed" Margin="0,10,0,0"/>
+                    	<Button x:ConnectionId='4' HorizontalAlignment="Stretch" Style="{StaticResource SaveAppBarButtonStyle}" Margin="0,10,0,0"                           />
                     </StackPanel>
 
                 </StackPanel>
@@ -51,7 +54,6 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <StackPanel>
-                    <local:QuickStartTask Number="2" Title="Query and Update Data" Description="Click refresh below to load the unfinished TodoItems from your database. Use the checkbox to complete and update your TodoItems" />
                     <Button x:ConnectionId='2' Margin="72,0,0,0" Name="ButtonRefresh"                            >Refresh</Button>
                 </StackPanel>
 

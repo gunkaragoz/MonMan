@@ -15,8 +15,11 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using MonMan;
+using MonMan;
+using Windows.Globalization.DateTimeFormatting;
 
-namespace monman
+namespace MonMan
 {
     public class TodoItem
     {
@@ -43,18 +46,54 @@ namespace monman
 
     }
 
-    public class userItem
+    public class transactionItem
     {
         public string Id { get; set; }
 
-        [JsonProperty(PropertyName = "email")]
-        public string Email { get; set; }
-
         [JsonProperty(PropertyName = "username")]
+        public string transactionUsername { get; set; }
 
-        public string Username { get; set; }
+        [JsonProperty(PropertyName = "date")]
+        public DateTime transactionDate {get;set;}
+
+        [JsonProperty(PropertyName = "type")]
+        public string transactionType { get; set; }
+
+        [JsonProperty(PropertyName = "category")]
+        public string transactionCategory { get; set; }
+
+        [JsonProperty(PropertyName = "amount")]
+        public float transactionAmount { get; set; }
+
+        [JsonProperty(PropertyName = "description")]
+        public string transactionDescription { get; set; }
+
+        [JsonProperty(PropertyName = "ispayed")]
+        public bool transactionIsPayed { get; set; }
+
+
 
     }
+
+    public class testItem
+    {
+        public string Id { get; set; }
+
+        [JsonProperty(PropertyName = "type")]
+        public string testType { get; set; }
+
+        [JsonProperty(PropertyName = "category")]
+        public string testCategory { get; set; }
+
+        [JsonProperty(PropertyName = "ispayed")]
+        public bool testIsPayed { get; set; }
+
+        [JsonProperty(PropertyName = "date")]
+        public DateTime testDate { get; set; }
+        
+    }
+
+
 
     public sealed partial class MainPage : Page
     {
@@ -64,8 +103,12 @@ namespace monman
         private MobileServiceCollection<categoryItem, categoryItem> categoryItems;
         private IMobileServiceTable<categoryItem> categoriesTable = App.MobileService.GetTable<categoryItem>();
 
-        private MobileServiceCollection<userItem, userItem> userItems;
-        private IMobileServiceTable<userItem> usersTable = App.MobileService.GetTable<userItem>();
+        private MobileServiceCollection<transactionItem, transactionItem> transactionItems;
+        private IMobileServiceTable<transactionItem> transactionsTable = App.MobileService.GetTable<transactionItem>();
+
+        private MobileServiceCollection<testItem, testItem> testItems;
+        private IMobileServiceTable<testItem> testTable = App.MobileService.GetTable<testItem>();
+
 
         public MainPage()
         {
@@ -84,28 +127,25 @@ namespace monman
             categoryItems.Add(categoryItem);
         }
 
-        private async void InsertUserItem(userItem userItem)
+        private async void InsertTransaction(transactionItem transaction)
         {
-            // TODO _GUN: Check if user is registered
-            if (userItems != null && userItems.Contains(userItem))
-            {
-                await new MessageDialog("User Exists!", "Email is already registered.").ShowAsync();
-            }
-            else
-            {
-                    await usersTable.InsertAsync(userItem);
-                    userItems.Add(userItem);
-            }
+            await transactionsTable.InsertAsync(transaction);
+            transactionItems.Add(transaction);
         }
+
+        private async void InsertTest(testItem test)
+        {
+            await testTable.InsertAsync(test);
+            testItems.Add(test);
+        }
+
 
         private async void InsertTodoItem(TodoItem todoItem)
         {
             // This code inserts a new TodoItem into the database. When the operation completes
             // and Mobile Services has assigned an Id, the item is added to the CollectionView
             await todoTable.InsertAsync(todoItem);
-            items.Add(todoItem);
-
-            
+            items.Add(todoItem);            
         }
 
         private async void RefreshTodoItems()
@@ -122,9 +162,6 @@ namespace monman
                 categoryItems = await categoriesTable
                     .ToCollectionAsync();
 
-                userItems = await usersTable
-                    .Where(userItem => userItem.Email != "")
-                    .ToCollectionAsync();
 
                 
             }
@@ -139,7 +176,7 @@ namespace monman
             }
             else
             {
-                ListItems.ItemsSource = userItems;
+                //ListItems.ItemsSource = items;
             }
         }
 
@@ -164,8 +201,8 @@ namespace monman
             var categoryItem = new categoryItem { Type = "Income", Category = "Salary" };
             InsertCategoryItem(categoryItem);
 
-            var userItem = new userItem { Email = "gun@iyte.net", Username = TextInput.Text };
-            InsertUserItem(userItem);
+            //var userItem = new userItem { Email = "gun@iyte.net", Username = TextInput.Text };
+            //InsertUserItem(userItem);
             
 
         }
@@ -179,7 +216,145 @@ namespace monman
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            RefreshTodoItems();
+            //await AuthenticateFacebook();
+            //await AuthenticateTwitter();
+            /*var parameter = e.Parameter as userItem;
+            if (parameter != null)
+            {
+                this.userNameTb.Text = parameter.Username;
+            }
+            else
+            {
+                this.userNameTb.Text = "Could not fetch name.";
+            }*/
+            //this.userNameTb.Text = "";
+            //RefreshTodoItems();
+
+            this.userNameTb.Text = "Welcome ";
+            loadTypeItems();
+            //createNewTransactionItem();
+            //createNewTestItem();
+            //loadCategoryItems();
+            //addNewCategoty();
+
+
+        }
+
+        private async void createNewTestItem()
+        {
+           testItems = await testTable.ToCollectionAsync();
+            var testItem = new testItem
+            {
+                testType = "type ulan",
+                testCategory = "cat ulan",
+                testIsPayed = true,
+                testDate = DateTime.Now
+            };
+
+            InsertTest(testItem);
+        }
+
+        private async void createNewTransactionItem()
+        {
+            transactionItems = await transactionsTable.ToCollectionAsync();
+
+            var transactionItem = new transactionItem
+            {
+                transactionUsername = "Gun",
+                transactionDate = dateSelection.Date.DateTime, //DateTime.Now,
+                transactionType = (string)comboType.SelectedItem,
+                transactionCategory = (string)comboCategory.SelectedItem,
+                transactionAmount = float.Parse(textAmount.Text),
+                transactionDescription = textDescription.Text,
+                transactionIsPayed = togglePayed.IsOn
+               
+
+            };
+
+            InsertTransaction(transactionItem);
+
+        }
+
+        private void addNewCategoty()
+        {
+            /*var categoryItem = new categoryItem { Type = "Income", Category = "Salary" };
+            InsertCategoryItem(categoryItem);
+
+            categoryItem = new categoryItem { Type = "Income", Category = "Asset" };
+            InsertCategoryItem(categoryItem);
+
+            // bills, groceries, entertainment, investment
+            categoryItem = new categoryItem { Type = "Expense", Category = "Bills" };
+            InsertCategoryItem(categoryItem);
+
+            categoryItem = new categoryItem { Type = "Expense", Category = "Groceries" };
+            InsertCategoryItem(categoryItem);
+
+            categoryItem = new categoryItem { Type = "Expense", Category = "Entertainment" };
+            InsertCategoryItem(categoryItem);
+
+            categoryItem = new categoryItem { Type = "Expense", Category = "Investment" };
+            InsertCategoryItem(categoryItem);*/
+        }
+
+        private void loadTypeItems()
+        {
+            comboType.Items.Add("Income");
+            comboType.Items.Add("Expense");
+
+        }
+
+        private async void loadCategoryItems()
+        {
+            
+            var results = await categoriesTable
+                                    .Where(categoryItem => categoryItem.Type == comboType.SelectedItem)
+                                    .ToListAsync();
+
+            var dialog = new MessageDialog("");
+            if (results.Count == 0)
+            {
+                dialog = new MessageDialog("Not found in table!");
+                dialog.Commands.Add(new UICommand("OK"));
+                await dialog.ShowAsync();
+            }
+            else
+            {
+                comboCategory.Items.Clear();
+                //dialog = new MessageDialog("You're goin' good!");                
+                foreach (var item in results)
+                {
+                    comboCategory.Items.Add(item.Category);
+                }
+            }
+            
+
+        }
+
+
+
+        private void comboType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            loadCategoryItems();
+        }
+
+        private void ButtonSave_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            
+            createNewTransactionItem();
+            /*
+           var transactionItem = new transactionItem{ 
+               //transactionDate = new DateTime(2013,12,24,0,0,0,0),
+               transactionType = (string)comboType.SelectedItem,
+               transactionCategory = (string)comboCategory.SelectedItem,
+               transactionAmount = float.Parse(textAmount.Text),
+               transactionDescription = textDescription.Text,
+               transactionIsPayed = true,
+               transactionUsername ="Gun"
+
+           };
+           InsertTransaction(transactionItem);
+             */
         }
 
     

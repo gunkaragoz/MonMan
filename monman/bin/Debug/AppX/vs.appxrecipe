@@ -6,7 +6,7 @@
     <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
     <PackageArchitecture>neutral</PackageArchitecture>
     <PackageIdentityName>d0464449-5b1d-400f-94f5-898e44186049</PackageIdentityName>
-    <RegisteredManifestChecksum>1F19D56C88F2FFDAB71EF2FDAE41611472D14101D531B966A31F399185A5F626</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>3572AE215887D142C8FF31F8B235C96DBF7912FFAEB6E58DC94FB28906B4C4CC</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>d0464449-5b1d-400f-94f5-898e44186049_1.0.0.0_neutral__yps17xarsp2at</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>d0464449-5b1d-400f-94f5-898e44186049_yps17xarsp2at!App</RegisteredUserModeAppID>
     <RegisteredPackageID>d0464449-5b1d-400f-94f5-898e44186049</RegisteredPackageID>
@@ -17,13 +17,13 @@
     <AppXManifest Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2013-12-12T12:24:50.900</Modified>
+      <Modified>2013-12-24T00:24:57.694</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\monman.exe">
-      <PackagePath>monman.exe</PackagePath>
-      <Modified>2013-12-12T22:46:41.741</Modified>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\MonMan.exe">
+      <PackagePath>MonMan.exe</PackagePath>
+      <Modified>2013-12-24T22:45:32.002</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\packages\Microsoft.Bcl.Async.1.0.16\lib\win8\Microsoft.Threading.Tasks.dll">
       <PackagePath>Microsoft.Threading.Tasks.dll</PackagePath>
@@ -53,6 +53,18 @@
       <PackagePath>System.Net.Http.Primitives.dll</PackagePath>
       <Modified>2013-12-12T12:24:41.134</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\Assets\fbLogin.png">
+      <PackagePath>Assets\fbLogin.png</PackagePath>
+      <Modified>2013-12-17T22:07:37.885</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\Assets\loginWithFacebook.png">
+      <PackagePath>Assets\loginWithFacebook.png</PackagePath>
+      <Modified>2013-12-17T20:21:46.499</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\Assets\loginWithTwitter.png">
+      <PackagePath>Assets\loginWithTwitter.png</PackagePath>
+      <Modified>2013-12-17T20:22:00.105</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\Assets\Logo.scale-100.png">
       <PackagePath>Assets\Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
@@ -73,25 +85,41 @@
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2013-11-21T14:25:12.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\Assets\twLogin.png">
+      <PackagePath>Assets\twLogin.png</PackagePath>
+      <Modified>2013-12-17T22:07:54.822</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\Assets\loading.GIF">
+      <PackagePath>Assets\loading.GIF</PackagePath>
+      <Modified>2013-12-19T09:13:43.529</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\Common\ReadMe.txt">
+      <PackagePath>Common\ReadMe.txt</PackagePath>
+      <Modified>2013-12-17T20:23:28.753</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2013-12-12T12:24:47.522</Modified>
+      <Modified>2013-12-24T21:54:14.665</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\LoginPage.xbf">
+      <PackagePath>LoginPage.xbf</PackagePath>
+      <Modified>2013-12-24T00:24:56.561</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\Common\QuickStartTask.xbf">
       <PackagePath>Common\QuickStartTask.xbf</PackagePath>
-      <Modified>2013-12-12T12:24:47.528</Modified>
+      <Modified>2013-12-24T00:24:56.561</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\Common\StandardStyles.xbf">
       <PackagePath>Common\StandardStyles.xbf</PackagePath>
-      <Modified>2013-12-12T12:24:47.534</Modified>
+      <Modified>2013-12-24T00:24:56.564</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2013-12-12T20:50:26.882</Modified>
+      <Modified>2013-12-24T00:24:56.565</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2013-12-12T22:46:42.344</Modified>
+      <Modified>2013-12-24T22:45:32.215</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

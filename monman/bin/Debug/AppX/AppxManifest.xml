@@ -9,7 +9,7 @@
   -->
   <Identity Name="d0464449-5b1d-400f-94f5-898e44186049" Publisher="CN=test" Version="1.0.0.0" ProcessorArchitecture="neutral" />
   <Properties>
-    <DisplayName>monman</DisplayName>
+    <DisplayName>MonMan</DisplayName>
     <PublisherDisplayName>Mobile Services</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -21,8 +21,8 @@
     <Resource Language="EN-US" />
   </Resources>
   <Applications>
-    <Application Id="App" Executable="monman.exe" EntryPoint="monman.App">
-      <m2:VisualElements DisplayName="monman" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="monman" ForegroundText="light" BackgroundColor="#464646">
+    <Application Id="App" Executable="MonMan.exe" EntryPoint="monman.App">
+      <m2:VisualElements DisplayName="MonMan" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="Money Manager for Individuals" ForegroundText="light" BackgroundColor="#464646" ToastCapable="true">
         <m2:SplashScreen Image="Assets\SplashScreen.png" />
       </m2:VisualElements>
     </Application>
