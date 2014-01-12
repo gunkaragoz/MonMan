@@ -6,13 +6,51 @@
     xmlns:local="using:MonMan"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:chart="using:De.TorstenMandelkow.MetroChart">
+
+    <Page.Resources>
+
+        <Style x:Key="HeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI Semilight"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="0,10,0,10"/>
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+
+        <Style x:Key="RowStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI Semilight"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Margin" Value="0,10,0,10"/>
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="FontWeight" Value="Normal" />
+        </Style>
+
+        <chart:ResourceDictionaryCollection x:Key="MyColorPalette">
+            <ResourceDictionary>
+                <SolidColorBrush x:Key="Brush1" Color="#FF1D97E3" />
+            </ResourceDictionary>
+            <ResourceDictionary>
+                <SolidColorBrush x:Key="Brush2" Color="#FFFF2900" />
+            </ResourceDictionary>
+
+        </chart:ResourceDictionaryCollection>
+
+
+    </Page.Resources>
 
     <Grid Background="White">
 
         <Grid Margin="50,50,10,10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -20,56 +58,151 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Grid x:Name="HeaderGrid" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,20">
+            <Grid x:Name="HeaderGrid" Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,0,20">
                 <StackPanel>
                     <TextBlock x:Name="apptitle" Text="MonMan" Foreground="Gray" FontFamily="Segoe UI Light" FontSize="45" />
-                    <TextBlock x:Name="userNameTb" TextWrapping="Wrap" Text="Hey!" HorizontalAlignment="Right" FontSize="20" Margin="0,0,-1,0"/>
+                    <TextBlock x:Name="tbUsername" TextWrapping="Wrap" Text="Hey!" HorizontalAlignment="Right" FontSize="20" Margin="0,0,-1,0"/>
                 </StackPanel>
             </Grid>
 
 
-            <Grid Grid.Row="1" HorizontalAlignment="Left">
-                <StackPanel Width="400" HorizontalAlignment="Left">
+            <Grid x:Name="NewTransactionGrid" Grid.Row="1" HorizontalAlignment="Left">
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF32BFCF" Offset="1"/>
+                        <GradientStop Color="White"/>
+                        <GradientStop Color="#FF040404" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
 
-                    <StackPanel Orientation="Horizontal" Margin="12,0,0,0">
-                        <TextBox x:Name="TextInput" Margin="5" MinWidth="300" />
-                        <Button x:ConnectionId='5' x:Name="ButtonSave"                          Content="Save"/>
-                    </StackPanel>
-                    <StackPanel Height="391" Width="315" HorizontalAlignment="Left">
-                    	<DatePicker x:Name="dateSelection" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
-                        <ComboBox x:ConnectionId='3' x:Name="comboType" Margin="0,10,0,0" PlaceholderText="Income / Expense"                                              />
-                    	<ComboBox x:Name="comboCategory" Margin="0,10,0,0" PlaceholderText="Select Category"/>
-                    	<TextBox x:Name="textAmount" TextWrapping="Wrap" Margin="0,10,0,0" PlaceholderText="Enter Amount"/>
-                    	<TextBox x:Name="textDescription" TextWrapping="Wrap" Margin="0,10,0,0" PlaceholderText="Description ( Optional)"/>
-                    	<ToggleSwitch x:Name="togglePayed" Header="" HorizontalAlignment="Left" VerticalAlignment="Stretch" OffContent="Not Payed" OnContent="Payed" Margin="0,10,0,0"/>
-                    	<Button x:ConnectionId='4' HorizontalAlignment="Stretch" Style="{StaticResource SaveAppBarButtonStyle}" Margin="0,10,0,0"                           />
+
+                <StackPanel Width="320" HorizontalAlignment="Left" Margin="0,10,0,0">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Add a New Transaction" VerticalAlignment="Top" FontSize="18.667" FontStretch="Undefined" FontStyle="Italic" FontWeight="Light"/>
+
+
+                    <StackPanel Height="391" Width="315" HorizontalAlignment="Left" Margin="0,10,0,0">
+                        <DatePicker x:Name="dateSelection" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" YearFormat="{}{year.full}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,10,0,0"/>
+                        <ComboBox x:ConnectionId='2' x:Name="comboType" Margin="0,10,0,0" PlaceholderText="Income / Expense"                                              />
+                        <ComboBox x:Name="comboCategory" Margin="0,10,0,0" PlaceholderText="Select Category"/>
+                        <TextBox x:Name="textAmount" TextWrapping="Wrap" Margin="0,10,0,0" PlaceholderText="Enter Amount"/>
+                        <TextBox x:Name="textDescription" TextWrapping="Wrap" Margin="0,10,0,0" PlaceholderText="Description ( Optional)"/>
+                        <Grid Height="100" Margin="0,10,0,0">
+                            <Button x:ConnectionId='4' HorizontalAlignment="Right" Style="{StaticResource SaveAppBarButtonStyle}" Margin="0,0,113,8"                            Height="82" VerticalAlignment="Bottom"/>
+                        </Grid>
+                        <Button x:ConnectionId='3' Content="Create Dummy Data" HorizontalAlignment="Left" VerticalAlignment="Top"                     />
                     </StackPanel>
 
                 </StackPanel>
+                <Button x:ConnectionId='1' Content="Refresh" HorizontalAlignment="Left" Margin="237,362,0,0" VerticalAlignment="Top"                                />
             </Grid>
 
-            <Grid Grid.Row="1" Grid.Column="1">
+            <Grid x:Name="HistoryTransactionGrid" Grid.Row="1" HorizontalAlignment="Left" Margin="330,10,0,0" Width="650" Background="#FFECECEC">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <StackPanel>
-                    <Button x:ConnectionId='2' Margin="72,0,0,0" Name="ButtonRefresh"                            >Refresh</Button>
-                </StackPanel>
+                <TextBlock x:Name="tbTransactionHeader" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Transactions" VerticalAlignment="Top" FontSize="18.667" FontStyle="Italic" FontWeight="Light"/>
 
-                <ListView Name="ListItems" Margin="62,10,0,0" Grid.Row="1">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <CheckBox x:ConnectionId='1' Name="CheckBoxComplete" IsChecked="{Binding Complete, Mode=TwoWay}"                                    Content="{Binding Username}" Margin="10,5" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <Grid x:Name="gridHeader" Height="35" Background="#FFFFFF" Margin="10,45,10,0">
+                    <Grid.ColumnDefinitions>
 
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Column="0" Grid.Row="0" 
+                		Style="{StaticResource HeaderStyle}"
+                		Text="#" Height="17" Margin="0,9" Width="8"   />
+                    <TextBlock Grid.Column="1" Grid.Row="0"
+                		Style="{StaticResource HeaderStyle}"
+                		Text="DATE" Height="17" Margin="0,9" Width="35" />
+                    <TextBlock Grid.Column="2" Grid.Row="0"
+                		Style="{StaticResource HeaderStyle}"
+                		Text="TYPE" Height="17" Margin="0,9" Width="86"  />
+                    <TextBlock Grid.Column="3" Grid.Row="0"
+                		Style="{StaticResource HeaderStyle}"
+                		Text="CATEGORY" Height="17" Margin="0,9,10,9" HorizontalAlignment="Stretch"/>
+                    <TextBlock Grid.Column="4" Grid.Row="0"
+                		Style="{StaticResource HeaderStyle}"
+                		Text="AMOUNT" Height="17" Margin="0,9" Width="87" />
+                    <TextBlock Grid.Column="5" Grid.Row="0"
+                		Style="{StaticResource HeaderStyle}"
+                		Text="DESCRIPTION" Height="17" Margin="0,9" Width="123" />
+                    <TextBlock Grid.Column="5" Grid.Row="0"
+                		Style="{StaticResource HeaderStyle}"
+                		Text="" Height="17" Margin="133,9,0,9" Width="0" />
+
+                </Grid>
+                <Grid x:Name="gridTransactions" Background="#FFFFFF" Margin="10,10,10,0" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2.5*"/>
+                        <ColumnDefinition Width="0.6*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                </Grid>
+
+            </Grid>
+            <Grid x:Name="GraphGrid"  Grid.Row="1" Margin="990,12,0,0">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Graph" VerticalAlignment="Top" FontSize="18.667" FontStyle="Italic" FontWeight="Light" Margin="0,0,-48,0"/>
+
+                <chart:PieChart x:Name="graphMonthly"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Style="{StaticResource MinimalChartStyle}"
+                    ChartTitle="Monthly Outlook"
+                    ChartSubTitle=""
+                    SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" Height="Auto" Margin="0,47,0,0" Width="Auto" 
+                    Palette="{StaticResource MyColorPalette}" VerticalAlignment="Top">
+                    <chart:PieChart.Series>
+                        <chart:ChartSeries
+                                        SeriesTitle="Errors"
+                                        DisplayMember="Category"
+                                        ValueMember="Number"
+                                        ItemsSource="{Binding MonthlyData}"
+                                        HorizontalAlignment="Left" />
+                    </chart:PieChart.Series>
+                </chart:PieChart>
+
+                <chart:ClusteredColumnChart x:Name="graphYearly"  
+                    Grid.Column="0"
+                     Grid.Row="1"
+                    Style="{StaticResource MinimalChartStyle}"
+                    ChartTitle="Yearly Outlook"
+                    ChartSubTitle="" 
+                    Palette="{Binding Path=MyColorPalette}"
+                    ChartLegendVisibility="Collapsed"
+                    ToolTipFormat="{Binding Path=ToolTipFormat}"              
+                    SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" Height="Auto" Margin="0,10,0,0" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                    <chart:ClusteredColumnChart.Series>
+                        <chart:ChartSeries
+                        SeriesTitle="Expense"
+                        DisplayMember="Month"
+                        ValueMember="Number"
+                        ItemsSource="{Binding YearlyExpense}" />
+                    </chart:ClusteredColumnChart.Series>
+                </chart:ClusteredColumnChart>
             </Grid>
 
         </Grid>
     </Grid>
+
 </Page>
 

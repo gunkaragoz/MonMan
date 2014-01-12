@@ -17,6 +17,9 @@
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\MonMan.exe">
       <PackagePath>MonMan.exe</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\De.TorstenMandelkow.MetroChart.WinRT\bin\Debug\De.TorstenMandelkow.MetroChart.dll">
+      <PackagePath>De.TorstenMandelkow.MetroChart.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\packages\Microsoft.Bcl.Async.1.0.16\lib\win8\Microsoft.Threading.Tasks.dll">
       <PackagePath>Microsoft.Threading.Tasks.dll</PackagePath>
     </AppxPackagedFile>
@@ -86,6 +89,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\De.TorstenMandelkow.MetroChart.WinRT\bin\Debug\De.TorstenMandelkow.MetroChart\Themes\Generic.xbf">
+      <PackagePath>De.TorstenMandelkow.MetroChart\Themes\Generic.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>

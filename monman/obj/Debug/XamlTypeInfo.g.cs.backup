@@ -9,17 +9,17 @@
 
 
 
-namespace monman
+namespace MonMan
 {
     public partial class App : global::Windows.UI.Xaml.Markup.IXamlMetadataProvider
     {
-        private global::monman.monman_XamlTypeInfo.XamlTypeInfoProvider _provider;
+        private global::MonMan.MonMan_XamlTypeInfo.XamlTypeInfoProvider _provider;
 
         public global::Windows.UI.Xaml.Markup.IXamlType GetXamlType(global::System.Type type)
         {
             if(_provider == null)
             {
-                _provider = new global::monman.monman_XamlTypeInfo.XamlTypeInfoProvider();
+                _provider = new global::MonMan.MonMan_XamlTypeInfo.XamlTypeInfoProvider();
             }
             return _provider.GetXamlTypeByType(type);
         }
@@ -28,7 +28,7 @@ namespace monman
         {
             if(_provider == null)
             {
-                _provider = new global::monman.monman_XamlTypeInfo.XamlTypeInfoProvider();
+                _provider = new global::MonMan.MonMan_XamlTypeInfo.XamlTypeInfoProvider();
             }
             return _provider.GetXamlTypeByName(fullName);
         }
@@ -40,7 +40,7 @@ namespace monman
     }
 }
 
-namespace monman.monman_XamlTypeInfo
+namespace MonMan.MonMan_XamlTypeInfo
 {
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Windows.UI.Xaml.Build.Tasks", "4.0.0.0")]    
@@ -58,6 +58,18 @@ namespace monman.monman_XamlTypeInfo
             if(typeIndex != -1)
             {
                 xamlType = CreateXamlType(typeIndex);
+            }
+            var userXamlType = xamlType as global::MonMan.MonMan_XamlTypeInfo.XamlUserType;
+            if(xamlType == null || (userXamlType != null && userXamlType.IsReturnTypeStub))
+            {
+                global::Windows.UI.Xaml.Markup.IXamlType libXamlType = CheckOtherMetadataProvidersForType(type);
+                if (libXamlType != null)
+                {
+                    if(libXamlType.IsConstructible || xamlType == null)
+                    {
+                        xamlType = libXamlType;
+                    }
+                }
             }
             if (xamlType != null)
             {
@@ -82,6 +94,18 @@ namespace monman.monman_XamlTypeInfo
             if(typeIndex != -1)
             {
                 xamlType = CreateXamlType(typeIndex);
+            }
+            var userXamlType = xamlType as global::MonMan.MonMan_XamlTypeInfo.XamlUserType;
+            if(xamlType == null || (userXamlType != null && userXamlType.IsReturnTypeStub))
+            {
+                global::Windows.UI.Xaml.Markup.IXamlType libXamlType = CheckOtherMetadataProvidersForName(typeName);
+                if (libXamlType != null)
+                {
+                    if(libXamlType.IsConstructible || xamlType == null)
+                    {
+                        xamlType = libXamlType;
+                    }
+                }
             }
             if (xamlType != null)
             {
@@ -124,21 +148,91 @@ namespace monman.monman_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[6];
-            _typeNameTable[0] = "monman.QuickStartTask";
-            _typeNameTable[1] = "Windows.UI.Xaml.Controls.UserControl";
-            _typeNameTable[2] = "Int32";
-            _typeNameTable[3] = "String";
-            _typeNameTable[4] = "monman.MainPage";
-            _typeNameTable[5] = "Windows.UI.Xaml.Controls.Page";
+            _typeNameTable = new string[41];
+            _typeNameTable[0] = "De.TorstenMandelkow.MetroChart.ChartBase";
+            _typeNameTable[1] = "Windows.UI.Xaml.Controls.Control";
+            _typeNameTable[2] = "Object";
+            _typeNameTable[3] = "Windows.UI.Xaml.Style";
+            _typeNameTable[4] = "String";
+            _typeNameTable[5] = "Windows.UI.Xaml.Visibility";
+            _typeNameTable[6] = "Double";
+            _typeNameTable[7] = "System.Collections.ObjectModel.ObservableCollection`1<De.TorstenMandelkow.MetroChart.ChartSeries>";
+            _typeNameTable[8] = "System.Collections.ObjectModel.Collection`1<De.TorstenMandelkow.MetroChart.ChartSeries>";
+            _typeNameTable[9] = "De.TorstenMandelkow.MetroChart.ChartSeries";
+            _typeNameTable[10] = "Windows.UI.Xaml.Controls.ItemsControl";
+            _typeNameTable[11] = "Boolean";
+            _typeNameTable[12] = "De.TorstenMandelkow.MetroChart.ResourceDictionaryCollection";
+            _typeNameTable[13] = "System.Collections.ObjectModel.ObservableCollection`1<Windows.UI.Xaml.ResourceDictionary>";
+            _typeNameTable[14] = "System.Collections.ObjectModel.Collection`1<Windows.UI.Xaml.ResourceDictionary>";
+            _typeNameTable[15] = "Windows.UI.Xaml.ResourceDictionary";
+            _typeNameTable[16] = "Windows.UI.Xaml.Media.Brush";
+            _typeNameTable[17] = "System.Collections.IEnumerable";
+            _typeNameTable[18] = "System.Collections.ObjectModel.ObservableCollection`1<String>";
+            _typeNameTable[19] = "System.Collections.ObjectModel.Collection`1<String>";
+            _typeNameTable[20] = "Windows.UI.Xaml.DataTemplate";
+            _typeNameTable[21] = "System.Collections.ObjectModel.ObservableCollection`1<De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel>";
+            _typeNameTable[22] = "System.Collections.ObjectModel.Collection`1<De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel>";
+            _typeNameTable[23] = "De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel";
+            _typeNameTable[24] = "Windows.UI.Xaml.DependencyObject";
+            _typeNameTable[25] = "System.Collections.ObjectModel.ObservableCollection`1<De.TorstenMandelkow.MetroChart.DataPointGroup>";
+            _typeNameTable[26] = "System.Collections.ObjectModel.Collection`1<De.TorstenMandelkow.MetroChart.DataPointGroup>";
+            _typeNameTable[27] = "De.TorstenMandelkow.MetroChart.DataPointGroup";
+            _typeNameTable[28] = "System.Collections.ObjectModel.ObservableCollection`1<De.TorstenMandelkow.MetroChart.DataPoint>";
+            _typeNameTable[29] = "System.Collections.ObjectModel.Collection`1<De.TorstenMandelkow.MetroChart.DataPoint>";
+            _typeNameTable[30] = "De.TorstenMandelkow.MetroChart.DataPoint";
+            _typeNameTable[31] = "MonMan.LoginPage";
+            _typeNameTable[32] = "Windows.UI.Xaml.Controls.Page";
+            _typeNameTable[33] = "Windows.UI.Xaml.Controls.UserControl";
+            _typeNameTable[34] = "MonMan.Common.ObservableDictionary";
+            _typeNameTable[35] = "MonMan.Common.NavigationHelper";
+            _typeNameTable[36] = "MonMan.QuickStartTask";
+            _typeNameTable[37] = "Int32";
+            _typeNameTable[38] = "De.TorstenMandelkow.MetroChart.PieChart";
+            _typeNameTable[39] = "De.TorstenMandelkow.MetroChart.ClusteredColumnChart";
+            _typeNameTable[40] = "MonMan.MainPage";
 
-            _typeTable = new global::System.Type[6];
-            _typeTable[0] = typeof(global::monman.QuickStartTask);
-            _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
-            _typeTable[2] = typeof(global::System.Int32);
-            _typeTable[3] = typeof(global::System.String);
-            _typeTable[4] = typeof(global::monman.MainPage);
-            _typeTable[5] = typeof(global::Windows.UI.Xaml.Controls.Page);
+            _typeTable = new global::System.Type[41];
+            _typeTable[0] = typeof(global::De.TorstenMandelkow.MetroChart.ChartBase);
+            _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Control);
+            _typeTable[2] = typeof(global::System.Object);
+            _typeTable[3] = typeof(global::Windows.UI.Xaml.Style);
+            _typeTable[4] = typeof(global::System.String);
+            _typeTable[5] = typeof(global::Windows.UI.Xaml.Visibility);
+            _typeTable[6] = typeof(global::System.Double);
+            _typeTable[7] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::De.TorstenMandelkow.MetroChart.ChartSeries>);
+            _typeTable[8] = typeof(global::System.Collections.ObjectModel.Collection<global::De.TorstenMandelkow.MetroChart.ChartSeries>);
+            _typeTable[9] = typeof(global::De.TorstenMandelkow.MetroChart.ChartSeries);
+            _typeTable[10] = typeof(global::Windows.UI.Xaml.Controls.ItemsControl);
+            _typeTable[11] = typeof(global::System.Boolean);
+            _typeTable[12] = typeof(global::De.TorstenMandelkow.MetroChart.ResourceDictionaryCollection);
+            _typeTable[13] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Windows.UI.Xaml.ResourceDictionary>);
+            _typeTable[14] = typeof(global::System.Collections.ObjectModel.Collection<global::Windows.UI.Xaml.ResourceDictionary>);
+            _typeTable[15] = typeof(global::Windows.UI.Xaml.ResourceDictionary);
+            _typeTable[16] = typeof(global::Windows.UI.Xaml.Media.Brush);
+            _typeTable[17] = typeof(global::System.Collections.IEnumerable);
+            _typeTable[18] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::System.String>);
+            _typeTable[19] = typeof(global::System.Collections.ObjectModel.Collection<global::System.String>);
+            _typeTable[20] = typeof(global::Windows.UI.Xaml.DataTemplate);
+            _typeTable[21] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel>);
+            _typeTable[22] = typeof(global::System.Collections.ObjectModel.Collection<global::De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel>);
+            _typeTable[23] = typeof(global::De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel);
+            _typeTable[24] = typeof(global::Windows.UI.Xaml.DependencyObject);
+            _typeTable[25] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::De.TorstenMandelkow.MetroChart.DataPointGroup>);
+            _typeTable[26] = typeof(global::System.Collections.ObjectModel.Collection<global::De.TorstenMandelkow.MetroChart.DataPointGroup>);
+            _typeTable[27] = typeof(global::De.TorstenMandelkow.MetroChart.DataPointGroup);
+            _typeTable[28] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::De.TorstenMandelkow.MetroChart.DataPoint>);
+            _typeTable[29] = typeof(global::System.Collections.ObjectModel.Collection<global::De.TorstenMandelkow.MetroChart.DataPoint>);
+            _typeTable[30] = typeof(global::De.TorstenMandelkow.MetroChart.DataPoint);
+            _typeTable[31] = typeof(global::MonMan.LoginPage);
+            _typeTable[32] = typeof(global::Windows.UI.Xaml.Controls.Page);
+            _typeTable[33] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
+            _typeTable[34] = typeof(global::MonMan.Common.ObservableDictionary);
+            _typeTable[35] = typeof(global::MonMan.Common.NavigationHelper);
+            _typeTable[36] = typeof(global::MonMan.QuickStartTask);
+            _typeTable[37] = typeof(global::System.Int32);
+            _typeTable[38] = typeof(global::De.TorstenMandelkow.MetroChart.PieChart);
+            _typeTable[39] = typeof(global::De.TorstenMandelkow.MetroChart.ClusteredColumnChart);
+            _typeTable[40] = typeof(global::MonMan.MainPage);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -173,112 +267,1513 @@ namespace monman.monman_XamlTypeInfo
             return -1;
         }
 
-        private object Activate_0_QuickStartTask() { return new global::monman.QuickStartTask(); }
-        private object Activate_4_MainPage() { return new global::monman.MainPage(); }
+        private object Activate_7_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::De.TorstenMandelkow.MetroChart.ChartSeries>(); }
+        private object Activate_8_Collection() { return new global::System.Collections.ObjectModel.Collection<global::De.TorstenMandelkow.MetroChart.ChartSeries>(); }
+        private object Activate_9_ChartSeries() { return new global::De.TorstenMandelkow.MetroChart.ChartSeries(); }
+        private object Activate_12_ResourceDictionaryCollection() { return new global::De.TorstenMandelkow.MetroChart.ResourceDictionaryCollection(); }
+        private object Activate_13_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Windows.UI.Xaml.ResourceDictionary>(); }
+        private object Activate_14_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Windows.UI.Xaml.ResourceDictionary>(); }
+        private object Activate_18_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::System.String>(); }
+        private object Activate_19_Collection() { return new global::System.Collections.ObjectModel.Collection<global::System.String>(); }
+        private object Activate_21_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel>(); }
+        private object Activate_22_Collection() { return new global::System.Collections.ObjectModel.Collection<global::De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel>(); }
+        private object Activate_23_ChartLegendItemViewModel() { return new global::De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel(); }
+        private object Activate_25_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::De.TorstenMandelkow.MetroChart.DataPointGroup>(); }
+        private object Activate_26_Collection() { return new global::System.Collections.ObjectModel.Collection<global::De.TorstenMandelkow.MetroChart.DataPointGroup>(); }
+        private object Activate_28_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::De.TorstenMandelkow.MetroChart.DataPoint>(); }
+        private object Activate_29_Collection() { return new global::System.Collections.ObjectModel.Collection<global::De.TorstenMandelkow.MetroChart.DataPoint>(); }
+        private object Activate_31_LoginPage() { return new global::MonMan.LoginPage(); }
+        private object Activate_34_ObservableDictionary() { return new global::MonMan.Common.ObservableDictionary(); }
+        private object Activate_36_QuickStartTask() { return new global::MonMan.QuickStartTask(); }
+        private object Activate_38_PieChart() { return new global::De.TorstenMandelkow.MetroChart.PieChart(); }
+        private object Activate_39_ClusteredColumnChart() { return new global::De.TorstenMandelkow.MetroChart.ClusteredColumnChart(); }
+        private object Activate_40_MainPage() { return new global::MonMan.MainPage(); }
+        private void VectorAdd_7_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::De.TorstenMandelkow.MetroChart.ChartSeries>)instance;
+            var newItem = (global::De.TorstenMandelkow.MetroChart.ChartSeries)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_8_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::De.TorstenMandelkow.MetroChart.ChartSeries>)instance;
+            var newItem = (global::De.TorstenMandelkow.MetroChart.ChartSeries)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_12_ResourceDictionaryCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Windows.UI.Xaml.ResourceDictionary>)instance;
+            var newItem = (global::Windows.UI.Xaml.ResourceDictionary)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_13_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Windows.UI.Xaml.ResourceDictionary>)instance;
+            var newItem = (global::Windows.UI.Xaml.ResourceDictionary)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_14_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Windows.UI.Xaml.ResourceDictionary>)instance;
+            var newItem = (global::Windows.UI.Xaml.ResourceDictionary)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_18_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::System.String>)instance;
+            var newItem = (global::System.String)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_19_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::System.String>)instance;
+            var newItem = (global::System.String)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_21_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel>)instance;
+            var newItem = (global::De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_22_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel>)instance;
+            var newItem = (global::De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_25_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::De.TorstenMandelkow.MetroChart.DataPointGroup>)instance;
+            var newItem = (global::De.TorstenMandelkow.MetroChart.DataPointGroup)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_26_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::De.TorstenMandelkow.MetroChart.DataPointGroup>)instance;
+            var newItem = (global::De.TorstenMandelkow.MetroChart.DataPointGroup)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_28_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::De.TorstenMandelkow.MetroChart.DataPoint>)instance;
+            var newItem = (global::De.TorstenMandelkow.MetroChart.DataPoint)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_29_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::De.TorstenMandelkow.MetroChart.DataPoint>)instance;
+            var newItem = (global::De.TorstenMandelkow.MetroChart.DataPoint)item;
+            collection.Add(newItem);
+        }
+        private void MapAdd_34_ObservableDictionary(object instance, object key, object item)
+        {
+            var collection = (global::System.Collections.Generic.IDictionary<global::System.String, global::System.Object>)instance;
+            var newKey = (global::System.String)key;
+            var newItem = (global::System.Object)item;
+            collection.Add(newKey, newItem);
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
-            global::monman.monman_XamlTypeInfo.XamlSystemBaseType xamlType = null;
-            global::monman.monman_XamlTypeInfo.XamlUserType userType;
+            global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType xamlType = null;
+            global::MonMan.MonMan_XamlTypeInfo.XamlUserType userType;
             string typeName = _typeNameTable[typeIndex];
             global::System.Type type = _typeTable[typeIndex];
 
             switch (typeIndex)
             {
 
-            case 0:   //  monman.QuickStartTask
-                userType = new global::monman.monman_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_0_QuickStartTask;
+            case 0:   //  De.TorstenMandelkow.MetroChart.ChartBase
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Control"));
+                userType.AddMemberName("InternalDataContext");
+                userType.AddMemberName("PlotterAreaStyle");
+                userType.AddMemberName("ChartAreaStyle");
+                userType.AddMemberName("ChartLegendItemStyle");
+                userType.AddMemberName("ChartTitle");
+                userType.AddMemberName("ChartSubTitle");
+                userType.AddMemberName("ChartTitleVisibility");
+                userType.AddMemberName("ChartTitleStyle");
+                userType.AddMemberName("MaxDataPointValue");
+                userType.AddMemberName("MaxDataPointGroupSum");
+                userType.AddMemberName("Series");
+                userType.AddMemberName("SelectedItem");
+                userType.AddMemberName("IsRowColumnSwitched");
+                userType.AddMemberName("Palette");
+                userType.AddMemberName("DefaultPalette");
+                userType.AddMemberName("SelectedBrush");
+                userType.AddMemberName("ToolTipFormat");
+                userType.AddMemberName("ChartLegendVisibility");
+                userType.AddMemberName("SeriesSource");
+                userType.AddMemberName("Exceptions");
+                userType.AddMemberName("SeriesTemplate");
+                userType.AddMemberName("SumOfDataPointGroup");
+                userType.AddMemberName("GridLines");
+                userType.AddMemberName("IsUseNextBiggestMaxValue");
+                userType.AddMemberName("ChartLegendItems");
+                userType.AddMemberName("HasExceptions");
+                userType.AddMemberName("DataPointGroups");
+                xamlType = userType;
+                break;
+
+            case 1:   //  Windows.UI.Xaml.Controls.Control
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 2:   //  Object
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 3:   //  Windows.UI.Xaml.Style
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 4:   //  String
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 5:   //  Windows.UI.Xaml.Visibility
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 6:   //  Double
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 7:   //  System.Collections.ObjectModel.ObservableCollection`1<De.TorstenMandelkow.MetroChart.ChartSeries>
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<De.TorstenMandelkow.MetroChart.ChartSeries>"));
+                userType.CollectionAdd = VectorAdd_7_ObservableCollection;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 8:   //  System.Collections.ObjectModel.Collection`1<De.TorstenMandelkow.MetroChart.ChartSeries>
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_8_Collection;
+                userType.CollectionAdd = VectorAdd_8_Collection;
+                xamlType = userType;
+                break;
+
+            case 9:   //  De.TorstenMandelkow.MetroChart.ChartSeries
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.ItemsControl"));
+                userType.Activator = Activate_9_ChartSeries;
+                userType.AddMemberName("SeriesTitle");
+                userType.AddMemberName("DisplayMember");
+                userType.AddMemberName("ValueMember");
+                xamlType = userType;
+                break;
+
+            case 10:   //  Windows.UI.Xaml.Controls.ItemsControl
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 11:   //  Boolean
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 12:   //  De.TorstenMandelkow.MetroChart.ResourceDictionaryCollection
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.ObservableCollection`1<Windows.UI.Xaml.ResourceDictionary>"));
+                userType.Activator = Activate_12_ResourceDictionaryCollection;
+                userType.CollectionAdd = VectorAdd_12_ResourceDictionaryCollection;
+                xamlType = userType;
+                break;
+
+            case 13:   //  System.Collections.ObjectModel.ObservableCollection`1<Windows.UI.Xaml.ResourceDictionary>
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Windows.UI.Xaml.ResourceDictionary>"));
+                userType.Activator = Activate_13_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_13_ObservableCollection;
+                xamlType = userType;
+                break;
+
+            case 14:   //  System.Collections.ObjectModel.Collection`1<Windows.UI.Xaml.ResourceDictionary>
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_14_Collection;
+                userType.CollectionAdd = VectorAdd_14_Collection;
+                userType.AddMemberName("Count");
+                xamlType = userType;
+                break;
+
+            case 15:   //  Windows.UI.Xaml.ResourceDictionary
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 16:   //  Windows.UI.Xaml.Media.Brush
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 17:   //  System.Collections.IEnumerable
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 18:   //  System.Collections.ObjectModel.ObservableCollection`1<String>
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<String>"));
+                userType.CollectionAdd = VectorAdd_18_ObservableCollection;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 19:   //  System.Collections.ObjectModel.Collection`1<String>
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_19_Collection;
+                userType.CollectionAdd = VectorAdd_19_Collection;
+                xamlType = userType;
+                break;
+
+            case 20:   //  Windows.UI.Xaml.DataTemplate
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 21:   //  System.Collections.ObjectModel.ObservableCollection`1<De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel>
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel>"));
+                userType.CollectionAdd = VectorAdd_21_ObservableCollection;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 22:   //  System.Collections.ObjectModel.Collection`1<De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel>
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_22_Collection;
+                userType.CollectionAdd = VectorAdd_22_Collection;
+                xamlType = userType;
+                break;
+
+            case 23:   //  De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
+                userType.Activator = Activate_23_ChartLegendItemViewModel;
+                userType.AddMemberName("Caption");
+                userType.AddMemberName("ItemBrush");
+                xamlType = userType;
+                break;
+
+            case 24:   //  Windows.UI.Xaml.DependencyObject
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 25:   //  System.Collections.ObjectModel.ObservableCollection`1<De.TorstenMandelkow.MetroChart.DataPointGroup>
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<De.TorstenMandelkow.MetroChart.DataPointGroup>"));
+                userType.CollectionAdd = VectorAdd_25_ObservableCollection;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 26:   //  System.Collections.ObjectModel.Collection`1<De.TorstenMandelkow.MetroChart.DataPointGroup>
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_26_Collection;
+                userType.CollectionAdd = VectorAdd_26_Collection;
+                xamlType = userType;
+                break;
+
+            case 27:   //  De.TorstenMandelkow.MetroChart.DataPointGroup
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
+                userType.AddMemberName("SelectedItem");
+                userType.AddMemberName("SumOfDataPointGroup");
+                userType.AddMemberName("DataPoints");
+                userType.AddMemberName("ParentChart");
+                userType.AddMemberName("Caption");
+                userType.AddMemberName("ShowCaption");
+                xamlType = userType;
+                break;
+
+            case 28:   //  System.Collections.ObjectModel.ObservableCollection`1<De.TorstenMandelkow.MetroChart.DataPoint>
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<De.TorstenMandelkow.MetroChart.DataPoint>"));
+                userType.CollectionAdd = VectorAdd_28_ObservableCollection;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 29:   //  System.Collections.ObjectModel.Collection`1<De.TorstenMandelkow.MetroChart.DataPoint>
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_29_Collection;
+                userType.CollectionAdd = VectorAdd_29_Collection;
+                xamlType = userType;
+                break;
+
+            case 30:   //  De.TorstenMandelkow.MetroChart.DataPoint
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
+                userType.AddMemberName("ParentChart");
+                userType.AddMemberName("SelectedItem");
+                userType.AddMemberName("IsSelected");
+                userType.AddMemberName("StartValue");
+                userType.AddMemberName("PercentageFromSumOfDataPointGroup");
+                userType.AddMemberName("PercentageFromMaxDataPointValue");
+                userType.AddMemberName("PercentageFromMaxDataPointGroupSum");
+                userType.AddMemberName("SumOfDataPointGroup");
+                userType.AddMemberName("MaxDataPointValue");
+                userType.AddMemberName("MaxDataPointGroupSum");
+                userType.AddMemberName("ToolTipFormat");
+                userType.AddMemberName("SelectedBrush");
+                userType.AddMemberName("SeriesCaption");
+                userType.AddMemberName("ItemBrush");
+                userType.AddMemberName("ReferencedObject");
+                userType.AddMemberName("ValueMember");
+                userType.AddMemberName("DisplayMember");
+                userType.AddMemberName("DisplayName");
+                userType.AddMemberName("Caption");
+                userType.AddMemberName("FormattedValue");
+                userType.AddMemberName("Value");
+                xamlType = userType;
+                break;
+
+            case 31:   //  MonMan.LoginPage
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_31_LoginPage;
+                userType.AddMemberName("DefaultViewModel");
+                userType.AddMemberName("NavigationHelper");
+                xamlType = userType;
+                break;
+
+            case 32:   //  Windows.UI.Xaml.Controls.Page
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 33:   //  Windows.UI.Xaml.Controls.UserControl
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 34:   //  MonMan.Common.ObservableDictionary
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.DictionaryAdd = MapAdd_34_ObservableDictionary;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 35:   //  MonMan.Common.NavigationHelper
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 36:   //  MonMan.QuickStartTask
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_36_QuickStartTask;
                 userType.AddMemberName("Number");
                 userType.AddMemberName("Title");
                 userType.AddMemberName("Description");
                 xamlType = userType;
                 break;
 
-            case 1:   //  Windows.UI.Xaml.Controls.UserControl
-                xamlType = new global::monman.monman_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+            case 37:   //  Int32
+                xamlType = new global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 2:   //  Int32
-                xamlType = new global::monman.monman_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 3:   //  String
-                xamlType = new global::monman.monman_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 4:   //  monman.MainPage
-                userType = new global::monman.monman_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_4_MainPage;
+            case 38:   //  De.TorstenMandelkow.MetroChart.PieChart
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase"));
+                userType.Activator = Activate_38_PieChart;
+                userType.AddMemberName("PieMinimalSize");
+                userType.AddMemberName("InnerRadiusRatio");
                 xamlType = userType;
                 break;
 
-            case 5:   //  Windows.UI.Xaml.Controls.Page
-                xamlType = new global::monman.monman_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+            case 39:   //  De.TorstenMandelkow.MetroChart.ClusteredColumnChart
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase"));
+                userType.Activator = Activate_39_ClusteredColumnChart;
+                userType.AddMemberName("IsUseNextBiggestMaxValue");
+                xamlType = userType;
+                break;
+
+            case 40:   //  MonMan.MainPage
+                userType = new global::MonMan.MonMan_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_40_MainPage;
+                xamlType = userType;
                 break;
             }
             return xamlType;
         }
 
-
-        private object get_0_QuickStartTask_Number(object instance)
+        private global::System.Collections.Generic.List<global::Windows.UI.Xaml.Markup.IXamlMetadataProvider> _otherProviders;
+        private global::System.Collections.Generic.List<global::Windows.UI.Xaml.Markup.IXamlMetadataProvider> OtherProviders
         {
-            var that = (global::monman.QuickStartTask)instance;
+            get
+            {
+                if(_otherProviders == null)
+                {
+                    _otherProviders = new global::System.Collections.Generic.List<global::Windows.UI.Xaml.Markup.IXamlMetadataProvider>();
+                    global::Windows.UI.Xaml.Markup.IXamlMetadataProvider provider;
+                    provider = new global::De.TorstenMandelkow.MetroChart.De_TorstenMandelkow_MetroChart_WinRT_XamlTypeInfo.XamlMetaDataProvider() as global::Windows.UI.Xaml.Markup.IXamlMetadataProvider;
+                    _otherProviders.Add(provider); 
+                }
+                return _otherProviders;
+            }
+        }
+
+        private global::Windows.UI.Xaml.Markup.IXamlType CheckOtherMetadataProvidersForName(string typeName)
+        {
+            global::Windows.UI.Xaml.Markup.IXamlType xamlType = null;
+            global::Windows.UI.Xaml.Markup.IXamlType foundXamlType = null;
+            foreach(global::Windows.UI.Xaml.Markup.IXamlMetadataProvider xmp in OtherProviders)
+            {
+                xamlType = xmp.GetXamlType(typeName);
+                if(xamlType != null)
+                {
+                    if(xamlType.IsConstructible)    // not Constructible means it might be a Return Type Stub
+                    {
+                        return xamlType;
+                    }
+                    foundXamlType = xamlType;
+                }
+            }
+            return foundXamlType;
+        }
+
+        private global::Windows.UI.Xaml.Markup.IXamlType CheckOtherMetadataProvidersForType(global::System.Type type)
+        {
+            global::Windows.UI.Xaml.Markup.IXamlType xamlType = null;
+            global::Windows.UI.Xaml.Markup.IXamlType foundXamlType = null;
+            foreach(global::Windows.UI.Xaml.Markup.IXamlMetadataProvider xmp in OtherProviders)
+            {
+                xamlType = xmp.GetXamlType(type);
+                if(xamlType != null)
+                {
+                    if(xamlType.IsConstructible)    // not Constructible means it might be a Return Type Stub
+                    {
+                        return xamlType;
+                    }
+                    foundXamlType = xamlType;
+                }
+            }
+            return foundXamlType;
+        }
+
+        private object get_0_ChartBase_InternalDataContext(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.InternalDataContext;
+        }
+        private void set_0_ChartBase_InternalDataContext(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.InternalDataContext = (global::System.Object)Value;
+        }
+        private object get_1_ChartBase_PlotterAreaStyle(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.PlotterAreaStyle;
+        }
+        private void set_1_ChartBase_PlotterAreaStyle(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.PlotterAreaStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_2_ChartBase_ChartAreaStyle(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.ChartAreaStyle;
+        }
+        private void set_2_ChartBase_ChartAreaStyle(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.ChartAreaStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_3_ChartBase_ChartLegendItemStyle(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.ChartLegendItemStyle;
+        }
+        private void set_3_ChartBase_ChartLegendItemStyle(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.ChartLegendItemStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_4_ChartBase_ChartTitle(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.ChartTitle;
+        }
+        private void set_4_ChartBase_ChartTitle(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.ChartTitle = (global::System.String)Value;
+        }
+        private object get_5_ChartBase_ChartSubTitle(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.ChartSubTitle;
+        }
+        private void set_5_ChartBase_ChartSubTitle(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.ChartSubTitle = (global::System.String)Value;
+        }
+        private object get_6_ChartBase_ChartTitleVisibility(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.ChartTitleVisibility;
+        }
+        private void set_6_ChartBase_ChartTitleVisibility(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.ChartTitleVisibility = (global::Windows.UI.Xaml.Visibility)Value;
+        }
+        private object get_7_ChartBase_ChartTitleStyle(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.ChartTitleStyle;
+        }
+        private void set_7_ChartBase_ChartTitleStyle(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.ChartTitleStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_8_ChartBase_MaxDataPointValue(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.MaxDataPointValue;
+        }
+        private void set_8_ChartBase_MaxDataPointValue(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.MaxDataPointValue = (global::System.Double)Value;
+        }
+        private object get_9_ChartBase_MaxDataPointGroupSum(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.MaxDataPointGroupSum;
+        }
+        private void set_9_ChartBase_MaxDataPointGroupSum(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.MaxDataPointGroupSum = (global::System.Double)Value;
+        }
+        private object get_10_ChartBase_Series(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.Series;
+        }
+        private void set_10_ChartBase_Series(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.Series = (global::System.Collections.ObjectModel.ObservableCollection<global::De.TorstenMandelkow.MetroChart.ChartSeries>)Value;
+        }
+        private object get_11_ChartSeries_SeriesTitle(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartSeries)instance;
+            return that.SeriesTitle;
+        }
+        private void set_11_ChartSeries_SeriesTitle(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartSeries)instance;
+            that.SeriesTitle = (global::System.String)Value;
+        }
+        private object get_12_ChartSeries_DisplayMember(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartSeries)instance;
+            return that.DisplayMember;
+        }
+        private void set_12_ChartSeries_DisplayMember(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartSeries)instance;
+            that.DisplayMember = (global::System.String)Value;
+        }
+        private object get_13_ChartSeries_ValueMember(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartSeries)instance;
+            return that.ValueMember;
+        }
+        private void set_13_ChartSeries_ValueMember(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartSeries)instance;
+            that.ValueMember = (global::System.String)Value;
+        }
+        private object get_14_ChartBase_SelectedItem(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.SelectedItem;
+        }
+        private void set_14_ChartBase_SelectedItem(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.SelectedItem = (global::System.Object)Value;
+        }
+        private object get_15_ChartBase_IsRowColumnSwitched(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.IsRowColumnSwitched;
+        }
+        private void set_15_ChartBase_IsRowColumnSwitched(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.IsRowColumnSwitched = (global::System.Boolean)Value;
+        }
+        private object get_16_ChartBase_Palette(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.Palette;
+        }
+        private void set_16_ChartBase_Palette(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.Palette = (global::De.TorstenMandelkow.MetroChart.ResourceDictionaryCollection)Value;
+        }
+        private object get_17_ChartBase_DefaultPalette(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.DefaultPalette;
+        }
+        private void set_17_ChartBase_DefaultPalette(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.DefaultPalette = (global::De.TorstenMandelkow.MetroChart.ResourceDictionaryCollection)Value;
+        }
+        private object get_18_ChartBase_SelectedBrush(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.SelectedBrush;
+        }
+        private void set_18_ChartBase_SelectedBrush(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.SelectedBrush = (global::Windows.UI.Xaml.Media.Brush)Value;
+        }
+        private object get_19_ChartBase_ToolTipFormat(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.ToolTipFormat;
+        }
+        private void set_19_ChartBase_ToolTipFormat(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.ToolTipFormat = (global::System.String)Value;
+        }
+        private object get_20_ChartBase_ChartLegendVisibility(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.ChartLegendVisibility;
+        }
+        private void set_20_ChartBase_ChartLegendVisibility(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.ChartLegendVisibility = (global::Windows.UI.Xaml.Visibility)Value;
+        }
+        private object get_21_ChartBase_SeriesSource(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.SeriesSource;
+        }
+        private void set_21_ChartBase_SeriesSource(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.SeriesSource = (global::System.Collections.IEnumerable)Value;
+        }
+        private object get_22_ChartBase_Exceptions(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.Exceptions;
+        }
+        private void set_22_ChartBase_Exceptions(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.Exceptions = (global::System.Collections.ObjectModel.ObservableCollection<global::System.String>)Value;
+        }
+        private object get_23_ChartBase_SeriesTemplate(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.SeriesTemplate;
+        }
+        private void set_23_ChartBase_SeriesTemplate(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.SeriesTemplate = (global::Windows.UI.Xaml.DataTemplate)Value;
+        }
+        private object get_24_ChartBase_SumOfDataPointGroup(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.SumOfDataPointGroup;
+        }
+        private void set_24_ChartBase_SumOfDataPointGroup(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            that.SumOfDataPointGroup = (global::System.Double)Value;
+        }
+        private object get_25_ChartBase_GridLines(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.GridLines;
+        }
+        private object get_26_ChartBase_IsUseNextBiggestMaxValue(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.IsUseNextBiggestMaxValue;
+        }
+        private object get_27_ChartBase_ChartLegendItems(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.ChartLegendItems;
+        }
+        private object get_28_ChartLegendItemViewModel_Caption(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel)instance;
+            return that.Caption;
+        }
+        private void set_28_ChartLegendItemViewModel_Caption(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel)instance;
+            that.Caption = (global::System.String)Value;
+        }
+        private object get_29_ChartLegendItemViewModel_ItemBrush(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel)instance;
+            return that.ItemBrush;
+        }
+        private void set_29_ChartLegendItemViewModel_ItemBrush(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel)instance;
+            that.ItemBrush = (global::Windows.UI.Xaml.Media.Brush)Value;
+        }
+        private object get_30_ChartBase_HasExceptions(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.HasExceptions;
+        }
+        private object get_31_ChartBase_DataPointGroups(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ChartBase)instance;
+            return that.DataPointGroups;
+        }
+        private object get_32_DataPointGroup_SelectedItem(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPointGroup)instance;
+            return that.SelectedItem;
+        }
+        private void set_32_DataPointGroup_SelectedItem(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPointGroup)instance;
+            that.SelectedItem = (global::System.Object)Value;
+        }
+        private object get_33_DataPointGroup_SumOfDataPointGroup(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPointGroup)instance;
+            return that.SumOfDataPointGroup;
+        }
+        private void set_33_DataPointGroup_SumOfDataPointGroup(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPointGroup)instance;
+            that.SumOfDataPointGroup = (global::System.Double)Value;
+        }
+        private object get_34_DataPointGroup_DataPoints(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPointGroup)instance;
+            return that.DataPoints;
+        }
+        private void set_34_DataPointGroup_DataPoints(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPointGroup)instance;
+            that.DataPoints = (global::System.Collections.ObjectModel.ObservableCollection<global::De.TorstenMandelkow.MetroChart.DataPoint>)Value;
+        }
+        private object get_35_DataPoint_ParentChart(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.ParentChart;
+        }
+        private object get_36_DataPoint_SelectedItem(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.SelectedItem;
+        }
+        private void set_36_DataPoint_SelectedItem(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            that.SelectedItem = (global::System.Object)Value;
+        }
+        private object get_37_DataPoint_IsSelected(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.IsSelected;
+        }
+        private void set_37_DataPoint_IsSelected(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            that.IsSelected = (global::System.Boolean)Value;
+        }
+        private object get_38_DataPoint_StartValue(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.StartValue;
+        }
+        private void set_38_DataPoint_StartValue(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            that.StartValue = (global::System.Double)Value;
+        }
+        private object get_39_DataPoint_PercentageFromSumOfDataPointGroup(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.PercentageFromSumOfDataPointGroup;
+        }
+        private object get_40_DataPoint_PercentageFromMaxDataPointValue(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.PercentageFromMaxDataPointValue;
+        }
+        private object get_41_DataPoint_PercentageFromMaxDataPointGroupSum(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.PercentageFromMaxDataPointGroupSum;
+        }
+        private object get_42_DataPoint_SumOfDataPointGroup(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.SumOfDataPointGroup;
+        }
+        private void set_42_DataPoint_SumOfDataPointGroup(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            that.SumOfDataPointGroup = (global::System.Double)Value;
+        }
+        private object get_43_DataPoint_MaxDataPointValue(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.MaxDataPointValue;
+        }
+        private void set_43_DataPoint_MaxDataPointValue(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            that.MaxDataPointValue = (global::System.Double)Value;
+        }
+        private object get_44_DataPoint_MaxDataPointGroupSum(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.MaxDataPointGroupSum;
+        }
+        private void set_44_DataPoint_MaxDataPointGroupSum(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            that.MaxDataPointGroupSum = (global::System.Double)Value;
+        }
+        private object get_45_DataPoint_ToolTipFormat(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.ToolTipFormat;
+        }
+        private void set_45_DataPoint_ToolTipFormat(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            that.ToolTipFormat = (global::System.String)Value;
+        }
+        private object get_46_DataPoint_SelectedBrush(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.SelectedBrush;
+        }
+        private void set_46_DataPoint_SelectedBrush(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            that.SelectedBrush = (global::Windows.UI.Xaml.Media.Brush)Value;
+        }
+        private object get_47_DataPoint_SeriesCaption(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.SeriesCaption;
+        }
+        private void set_47_DataPoint_SeriesCaption(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            that.SeriesCaption = (global::System.String)Value;
+        }
+        private object get_48_DataPoint_ItemBrush(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.ItemBrush;
+        }
+        private void set_48_DataPoint_ItemBrush(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            that.ItemBrush = (global::Windows.UI.Xaml.Media.Brush)Value;
+        }
+        private object get_49_DataPoint_ReferencedObject(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.ReferencedObject;
+        }
+        private void set_49_DataPoint_ReferencedObject(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            that.ReferencedObject = (global::System.Object)Value;
+        }
+        private object get_50_DataPoint_ValueMember(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.ValueMember;
+        }
+        private void set_50_DataPoint_ValueMember(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            that.ValueMember = (global::System.String)Value;
+        }
+        private object get_51_DataPoint_DisplayMember(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.DisplayMember;
+        }
+        private void set_51_DataPoint_DisplayMember(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            that.DisplayMember = (global::System.String)Value;
+        }
+        private object get_52_DataPoint_DisplayName(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.DisplayName;
+        }
+        private object get_53_DataPoint_Caption(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.Caption;
+        }
+        private object get_54_DataPoint_FormattedValue(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.FormattedValue;
+        }
+        private object get_55_DataPoint_Value(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPoint)instance;
+            return that.Value;
+        }
+        private object get_56_DataPointGroup_ParentChart(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPointGroup)instance;
+            return that.ParentChart;
+        }
+        private object get_57_DataPointGroup_Caption(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPointGroup)instance;
+            return that.Caption;
+        }
+        private object get_58_DataPointGroup_ShowCaption(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.DataPointGroup)instance;
+            return that.ShowCaption;
+        }
+        private object get_59_LoginPage_DefaultViewModel(object instance)
+        {
+            var that = (global::MonMan.LoginPage)instance;
+            return that.DefaultViewModel;
+        }
+        private object get_60_LoginPage_NavigationHelper(object instance)
+        {
+            var that = (global::MonMan.LoginPage)instance;
+            return that.NavigationHelper;
+        }
+        private object get_61_QuickStartTask_Number(object instance)
+        {
+            var that = (global::MonMan.QuickStartTask)instance;
             return that.Number;
         }
-        private void set_0_QuickStartTask_Number(object instance, object Value)
+        private void set_61_QuickStartTask_Number(object instance, object Value)
         {
-            var that = (global::monman.QuickStartTask)instance;
+            var that = (global::MonMan.QuickStartTask)instance;
             that.Number = (global::System.Int32)Value;
         }
-        private object get_1_QuickStartTask_Title(object instance)
+        private object get_62_QuickStartTask_Title(object instance)
         {
-            var that = (global::monman.QuickStartTask)instance;
+            var that = (global::MonMan.QuickStartTask)instance;
             return that.Title;
         }
-        private void set_1_QuickStartTask_Title(object instance, object Value)
+        private void set_62_QuickStartTask_Title(object instance, object Value)
         {
-            var that = (global::monman.QuickStartTask)instance;
+            var that = (global::MonMan.QuickStartTask)instance;
             that.Title = (global::System.String)Value;
         }
-        private object get_2_QuickStartTask_Description(object instance)
+        private object get_63_QuickStartTask_Description(object instance)
         {
-            var that = (global::monman.QuickStartTask)instance;
+            var that = (global::MonMan.QuickStartTask)instance;
             return that.Description;
         }
-        private void set_2_QuickStartTask_Description(object instance, object Value)
+        private void set_63_QuickStartTask_Description(object instance, object Value)
         {
-            var that = (global::monman.QuickStartTask)instance;
+            var that = (global::MonMan.QuickStartTask)instance;
             that.Description = (global::System.String)Value;
+        }
+        private object get_64_Collection_Count(object instance)
+        {
+            var that = (global::System.Collections.ObjectModel.Collection<global::Windows.UI.Xaml.ResourceDictionary>)instance;
+            return that.Count;
+        }
+        private object get_65_PieChart_PieMinimalSize(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.PieChart)instance;
+            return that.PieMinimalSize;
+        }
+        private void set_65_PieChart_PieMinimalSize(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.PieChart)instance;
+            that.PieMinimalSize = (global::System.Double)Value;
+        }
+        private object get_66_PieChart_InnerRadiusRatio(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.PieChart)instance;
+            return that.InnerRadiusRatio;
+        }
+        private void set_66_PieChart_InnerRadiusRatio(object instance, object Value)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.PieChart)instance;
+            that.InnerRadiusRatio = (global::System.Double)Value;
+        }
+        private object get_67_ClusteredColumnChart_IsUseNextBiggestMaxValue(object instance)
+        {
+            var that = (global::De.TorstenMandelkow.MetroChart.ClusteredColumnChart)instance;
+            return that.IsUseNextBiggestMaxValue;
         }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
-            global::monman.monman_XamlTypeInfo.XamlMember xamlMember = null;
-            global::monman.monman_XamlTypeInfo.XamlUserType userType;
+            global::MonMan.MonMan_XamlTypeInfo.XamlMember xamlMember = null;
+            global::MonMan.MonMan_XamlTypeInfo.XamlUserType userType;
 
             switch (longMemberName)
             {
-            case "monman.QuickStartTask.Number":
-                userType = (global::monman.monman_XamlTypeInfo.XamlUserType)GetXamlTypeByName("monman.QuickStartTask");
-                xamlMember = new global::monman.monman_XamlTypeInfo.XamlMember(this, "Number", "Int32");
+            case "De.TorstenMandelkow.MetroChart.ChartBase.InternalDataContext":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "InternalDataContext", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_0_QuickStartTask_Number;
-                xamlMember.Setter = set_0_QuickStartTask_Number;
+                xamlMember.Getter = get_0_ChartBase_InternalDataContext;
+                xamlMember.Setter = set_0_ChartBase_InternalDataContext;
                 break;
-            case "monman.QuickStartTask.Title":
-                userType = (global::monman.monman_XamlTypeInfo.XamlUserType)GetXamlTypeByName("monman.QuickStartTask");
-                xamlMember = new global::monman.monman_XamlTypeInfo.XamlMember(this, "Title", "String");
+            case "De.TorstenMandelkow.MetroChart.ChartBase.PlotterAreaStyle":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "PlotterAreaStyle", "Windows.UI.Xaml.Style");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_1_QuickStartTask_Title;
-                xamlMember.Setter = set_1_QuickStartTask_Title;
+                xamlMember.Getter = get_1_ChartBase_PlotterAreaStyle;
+                xamlMember.Setter = set_1_ChartBase_PlotterAreaStyle;
                 break;
-            case "monman.QuickStartTask.Description":
-                userType = (global::monman.monman_XamlTypeInfo.XamlUserType)GetXamlTypeByName("monman.QuickStartTask");
-                xamlMember = new global::monman.monman_XamlTypeInfo.XamlMember(this, "Description", "String");
+            case "De.TorstenMandelkow.MetroChart.ChartBase.ChartAreaStyle":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "ChartAreaStyle", "Windows.UI.Xaml.Style");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_2_QuickStartTask_Description;
-                xamlMember.Setter = set_2_QuickStartTask_Description;
+                xamlMember.Getter = get_2_ChartBase_ChartAreaStyle;
+                xamlMember.Setter = set_2_ChartBase_ChartAreaStyle;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.ChartLegendItemStyle":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "ChartLegendItemStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_3_ChartBase_ChartLegendItemStyle;
+                xamlMember.Setter = set_3_ChartBase_ChartLegendItemStyle;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.ChartTitle":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "ChartTitle", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_4_ChartBase_ChartTitle;
+                xamlMember.Setter = set_4_ChartBase_ChartTitle;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.ChartSubTitle":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "ChartSubTitle", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_5_ChartBase_ChartSubTitle;
+                xamlMember.Setter = set_5_ChartBase_ChartSubTitle;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.ChartTitleVisibility":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "ChartTitleVisibility", "Windows.UI.Xaml.Visibility");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_6_ChartBase_ChartTitleVisibility;
+                xamlMember.Setter = set_6_ChartBase_ChartTitleVisibility;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.ChartTitleStyle":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "ChartTitleStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_7_ChartBase_ChartTitleStyle;
+                xamlMember.Setter = set_7_ChartBase_ChartTitleStyle;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.MaxDataPointValue":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "MaxDataPointValue", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_8_ChartBase_MaxDataPointValue;
+                xamlMember.Setter = set_8_ChartBase_MaxDataPointValue;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.MaxDataPointGroupSum":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "MaxDataPointGroupSum", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_9_ChartBase_MaxDataPointGroupSum;
+                xamlMember.Setter = set_9_ChartBase_MaxDataPointGroupSum;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.Series":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "Series", "System.Collections.ObjectModel.ObservableCollection`1<De.TorstenMandelkow.MetroChart.ChartSeries>");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_10_ChartBase_Series;
+                xamlMember.Setter = set_10_ChartBase_Series;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartSeries.SeriesTitle":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartSeries");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "SeriesTitle", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_11_ChartSeries_SeriesTitle;
+                xamlMember.Setter = set_11_ChartSeries_SeriesTitle;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartSeries.DisplayMember":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartSeries");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "DisplayMember", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_12_ChartSeries_DisplayMember;
+                xamlMember.Setter = set_12_ChartSeries_DisplayMember;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartSeries.ValueMember":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartSeries");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "ValueMember", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_13_ChartSeries_ValueMember;
+                xamlMember.Setter = set_13_ChartSeries_ValueMember;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.SelectedItem":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "SelectedItem", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_14_ChartBase_SelectedItem;
+                xamlMember.Setter = set_14_ChartBase_SelectedItem;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.IsRowColumnSwitched":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "IsRowColumnSwitched", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_15_ChartBase_IsRowColumnSwitched;
+                xamlMember.Setter = set_15_ChartBase_IsRowColumnSwitched;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.Palette":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "Palette", "De.TorstenMandelkow.MetroChart.ResourceDictionaryCollection");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_16_ChartBase_Palette;
+                xamlMember.Setter = set_16_ChartBase_Palette;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.DefaultPalette":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "DefaultPalette", "De.TorstenMandelkow.MetroChart.ResourceDictionaryCollection");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_17_ChartBase_DefaultPalette;
+                xamlMember.Setter = set_17_ChartBase_DefaultPalette;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.SelectedBrush":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "SelectedBrush", "Windows.UI.Xaml.Media.Brush");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_18_ChartBase_SelectedBrush;
+                xamlMember.Setter = set_18_ChartBase_SelectedBrush;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.ToolTipFormat":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "ToolTipFormat", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_19_ChartBase_ToolTipFormat;
+                xamlMember.Setter = set_19_ChartBase_ToolTipFormat;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.ChartLegendVisibility":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "ChartLegendVisibility", "Windows.UI.Xaml.Visibility");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_20_ChartBase_ChartLegendVisibility;
+                xamlMember.Setter = set_20_ChartBase_ChartLegendVisibility;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.SeriesSource":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "SeriesSource", "System.Collections.IEnumerable");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_21_ChartBase_SeriesSource;
+                xamlMember.Setter = set_21_ChartBase_SeriesSource;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.Exceptions":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "Exceptions", "System.Collections.ObjectModel.ObservableCollection`1<String>");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_22_ChartBase_Exceptions;
+                xamlMember.Setter = set_22_ChartBase_Exceptions;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.SeriesTemplate":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "SeriesTemplate", "Windows.UI.Xaml.DataTemplate");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_23_ChartBase_SeriesTemplate;
+                xamlMember.Setter = set_23_ChartBase_SeriesTemplate;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.SumOfDataPointGroup":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "SumOfDataPointGroup", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_24_ChartBase_SumOfDataPointGroup;
+                xamlMember.Setter = set_24_ChartBase_SumOfDataPointGroup;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.GridLines":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "GridLines", "System.Collections.ObjectModel.ObservableCollection`1<String>");
+                xamlMember.Getter = get_25_ChartBase_GridLines;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.IsUseNextBiggestMaxValue":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "IsUseNextBiggestMaxValue", "Boolean");
+                xamlMember.Getter = get_26_ChartBase_IsUseNextBiggestMaxValue;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.ChartLegendItems":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "ChartLegendItems", "System.Collections.ObjectModel.ObservableCollection`1<De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel>");
+                xamlMember.Getter = get_27_ChartBase_ChartLegendItems;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel.Caption":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "Caption", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_28_ChartLegendItemViewModel_Caption;
+                xamlMember.Setter = set_28_ChartLegendItemViewModel_Caption;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel.ItemBrush":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartLegendItemViewModel");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "ItemBrush", "Windows.UI.Xaml.Media.Brush");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_29_ChartLegendItemViewModel_ItemBrush;
+                xamlMember.Setter = set_29_ChartLegendItemViewModel_ItemBrush;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.HasExceptions":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "HasExceptions", "Boolean");
+                xamlMember.Getter = get_30_ChartBase_HasExceptions;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "De.TorstenMandelkow.MetroChart.ChartBase.DataPointGroups":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "DataPointGroups", "System.Collections.ObjectModel.ObservableCollection`1<De.TorstenMandelkow.MetroChart.DataPointGroup>");
+                xamlMember.Getter = get_31_ChartBase_DataPointGroups;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPointGroup.SelectedItem":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPointGroup");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "SelectedItem", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_32_DataPointGroup_SelectedItem;
+                xamlMember.Setter = set_32_DataPointGroup_SelectedItem;
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPointGroup.SumOfDataPointGroup":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPointGroup");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "SumOfDataPointGroup", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_33_DataPointGroup_SumOfDataPointGroup;
+                xamlMember.Setter = set_33_DataPointGroup_SumOfDataPointGroup;
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPointGroup.DataPoints":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPointGroup");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "DataPoints", "System.Collections.ObjectModel.ObservableCollection`1<De.TorstenMandelkow.MetroChart.DataPoint>");
+                xamlMember.Getter = get_34_DataPointGroup_DataPoints;
+                xamlMember.Setter = set_34_DataPointGroup_DataPoints;
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.ParentChart":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "ParentChart", "De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember.Getter = get_35_DataPoint_ParentChart;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.SelectedItem":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "SelectedItem", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_36_DataPoint_SelectedItem;
+                xamlMember.Setter = set_36_DataPoint_SelectedItem;
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.IsSelected":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "IsSelected", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_37_DataPoint_IsSelected;
+                xamlMember.Setter = set_37_DataPoint_IsSelected;
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.StartValue":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "StartValue", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_38_DataPoint_StartValue;
+                xamlMember.Setter = set_38_DataPoint_StartValue;
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.PercentageFromSumOfDataPointGroup":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "PercentageFromSumOfDataPointGroup", "Double");
+                xamlMember.Getter = get_39_DataPoint_PercentageFromSumOfDataPointGroup;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.PercentageFromMaxDataPointValue":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "PercentageFromMaxDataPointValue", "Double");
+                xamlMember.Getter = get_40_DataPoint_PercentageFromMaxDataPointValue;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.PercentageFromMaxDataPointGroupSum":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "PercentageFromMaxDataPointGroupSum", "Double");
+                xamlMember.Getter = get_41_DataPoint_PercentageFromMaxDataPointGroupSum;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.SumOfDataPointGroup":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "SumOfDataPointGroup", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_42_DataPoint_SumOfDataPointGroup;
+                xamlMember.Setter = set_42_DataPoint_SumOfDataPointGroup;
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.MaxDataPointValue":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "MaxDataPointValue", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_43_DataPoint_MaxDataPointValue;
+                xamlMember.Setter = set_43_DataPoint_MaxDataPointValue;
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.MaxDataPointGroupSum":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "MaxDataPointGroupSum", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_44_DataPoint_MaxDataPointGroupSum;
+                xamlMember.Setter = set_44_DataPoint_MaxDataPointGroupSum;
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.ToolTipFormat":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "ToolTipFormat", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_45_DataPoint_ToolTipFormat;
+                xamlMember.Setter = set_45_DataPoint_ToolTipFormat;
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.SelectedBrush":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "SelectedBrush", "Windows.UI.Xaml.Media.Brush");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_46_DataPoint_SelectedBrush;
+                xamlMember.Setter = set_46_DataPoint_SelectedBrush;
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.SeriesCaption":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "SeriesCaption", "String");
+                xamlMember.Getter = get_47_DataPoint_SeriesCaption;
+                xamlMember.Setter = set_47_DataPoint_SeriesCaption;
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.ItemBrush":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "ItemBrush", "Windows.UI.Xaml.Media.Brush");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_48_DataPoint_ItemBrush;
+                xamlMember.Setter = set_48_DataPoint_ItemBrush;
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.ReferencedObject":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "ReferencedObject", "Object");
+                xamlMember.Getter = get_49_DataPoint_ReferencedObject;
+                xamlMember.Setter = set_49_DataPoint_ReferencedObject;
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.ValueMember":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "ValueMember", "String");
+                xamlMember.Getter = get_50_DataPoint_ValueMember;
+                xamlMember.Setter = set_50_DataPoint_ValueMember;
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.DisplayMember":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "DisplayMember", "String");
+                xamlMember.Getter = get_51_DataPoint_DisplayMember;
+                xamlMember.Setter = set_51_DataPoint_DisplayMember;
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.DisplayName":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "DisplayName", "String");
+                xamlMember.Getter = get_52_DataPoint_DisplayName;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.Caption":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "Caption", "String");
+                xamlMember.Getter = get_53_DataPoint_Caption;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.FormattedValue":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "FormattedValue", "String");
+                xamlMember.Getter = get_54_DataPoint_FormattedValue;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPoint.Value":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPoint");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "Value", "Double");
+                xamlMember.Getter = get_55_DataPoint_Value;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPointGroup.ParentChart":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPointGroup");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "ParentChart", "De.TorstenMandelkow.MetroChart.ChartBase");
+                xamlMember.Getter = get_56_DataPointGroup_ParentChart;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPointGroup.Caption":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPointGroup");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "Caption", "String");
+                xamlMember.Getter = get_57_DataPointGroup_Caption;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "De.TorstenMandelkow.MetroChart.DataPointGroup.ShowCaption":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.DataPointGroup");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "ShowCaption", "Boolean");
+                xamlMember.Getter = get_58_DataPointGroup_ShowCaption;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "MonMan.LoginPage.DefaultViewModel":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("MonMan.LoginPage");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "MonMan.Common.ObservableDictionary");
+                xamlMember.Getter = get_59_LoginPage_DefaultViewModel;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "MonMan.LoginPage.NavigationHelper":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("MonMan.LoginPage");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "NavigationHelper", "MonMan.Common.NavigationHelper");
+                xamlMember.Getter = get_60_LoginPage_NavigationHelper;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "MonMan.QuickStartTask.Number":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("MonMan.QuickStartTask");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "Number", "Int32");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_61_QuickStartTask_Number;
+                xamlMember.Setter = set_61_QuickStartTask_Number;
+                break;
+            case "MonMan.QuickStartTask.Title":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("MonMan.QuickStartTask");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "Title", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_62_QuickStartTask_Title;
+                xamlMember.Setter = set_62_QuickStartTask_Title;
+                break;
+            case "MonMan.QuickStartTask.Description":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("MonMan.QuickStartTask");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "Description", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_63_QuickStartTask_Description;
+                xamlMember.Setter = set_63_QuickStartTask_Description;
+                break;
+            case "System.Collections.ObjectModel.Collection`1<Windows.UI.Xaml.ResourceDictionary>.Count":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Windows.UI.Xaml.ResourceDictionary>");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "Count", "Int32");
+                xamlMember.Getter = get_64_Collection_Count;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "De.TorstenMandelkow.MetroChart.PieChart.PieMinimalSize":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.PieChart");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "PieMinimalSize", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_65_PieChart_PieMinimalSize;
+                xamlMember.Setter = set_65_PieChart_PieMinimalSize;
+                break;
+            case "De.TorstenMandelkow.MetroChart.PieChart.InnerRadiusRatio":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.PieChart");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "InnerRadiusRatio", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_66_PieChart_InnerRadiusRatio;
+                xamlMember.Setter = set_66_PieChart_InnerRadiusRatio;
+                break;
+            case "De.TorstenMandelkow.MetroChart.ClusteredColumnChart.IsUseNextBiggestMaxValue":
+                userType = (global::MonMan.MonMan_XamlTypeInfo.XamlUserType)GetXamlTypeByName("De.TorstenMandelkow.MetroChart.ClusteredColumnChart");
+                xamlMember = new global::MonMan.MonMan_XamlTypeInfo.XamlMember(this, "IsUseNextBiggestMaxValue", "Boolean");
+                xamlMember.Getter = get_67_ClusteredColumnChart_IsUseNextBiggestMaxValue;
+                xamlMember.SetIsReadOnly();
                 break;
             }
             return xamlMember;
@@ -335,9 +1830,9 @@ namespace monman.monman_XamlTypeInfo
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Windows.UI.Xaml.Build.Tasks", "4.0.0.0")]    
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    internal class XamlUserType : global::monman.monman_XamlTypeInfo.XamlSystemBaseType
+    internal class XamlUserType : global::MonMan.MonMan_XamlTypeInfo.XamlSystemBaseType
     {
-        global::monman.monman_XamlTypeInfo.XamlTypeInfoProvider _provider;
+        global::MonMan.MonMan_XamlTypeInfo.XamlTypeInfoProvider _provider;
         global::Windows.UI.Xaml.Markup.IXamlType _baseType;
         bool _isArray;
         bool _isMarkupExtension;
@@ -350,7 +1845,7 @@ namespace monman.monman_XamlTypeInfo
         global::System.Collections.Generic.Dictionary<string, string> _memberNames;
         global::System.Collections.Generic.Dictionary<string, object> _enumValues;
 
-        public XamlUserType(global::monman.monman_XamlTypeInfo.XamlTypeInfoProvider provider, string fullName, global::System.Type fullType, global::Windows.UI.Xaml.Markup.IXamlType baseType)
+        public XamlUserType(global::MonMan.MonMan_XamlTypeInfo.XamlTypeInfoProvider provider, string fullName, global::System.Type fullType, global::Windows.UI.Xaml.Markup.IXamlType baseType)
             :base(fullName, fullType)
         {
             _provider = provider;
@@ -537,7 +2032,7 @@ namespace monman.monman_XamlTypeInfo
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
     internal class XamlMember : global::Windows.UI.Xaml.Markup.IXamlMember
     {
-        global::monman.monman_XamlTypeInfo.XamlTypeInfoProvider _provider;
+        global::MonMan.MonMan_XamlTypeInfo.XamlTypeInfoProvider _provider;
         string _name;
         bool _isAttachable;
         bool _isDependencyProperty;
@@ -546,7 +2041,7 @@ namespace monman.monman_XamlTypeInfo
         string _typeName;
         string _targetTypeName;
 
-        public XamlMember(global::monman.monman_XamlTypeInfo.XamlTypeInfoProvider provider, string name, string typeName)
+        public XamlMember(global::MonMan.MonMan_XamlTypeInfo.XamlTypeInfoProvider provider, string name, string typeName)
         {
             _name = name;
             _typeName = typeName;

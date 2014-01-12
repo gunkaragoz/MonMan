@@ -25,10 +25,19 @@ namespace MonMan
     {
         // This MobileServiceClient has been configured to communicate with your Mobile Service's url
         // and application key. You're all set to start working with your Mobile Service!
-        public static MobileServiceClient MobileService = new MobileServiceClient(
+
+        // Gmail Account
+        /*public static MobileServiceClient MobileService = new MobileServiceClient(
             "https://monman.azure-mobile.net/",
-            "DPRPwCeGNWmnZAoZfSxjEgLqtRtKFN58"
+            "DPRPwCeGNWmnZAoZfSxjEgLqtRtKFN58" 
+        );*/
+
+        // Ozu.edu.tr account
+        public static MobileServiceClient MobileService = new MobileServiceClient(
+            "https://moneyman.azure-mobile.net/",
+            "NCySKsOVUbXNbkoIcIDktvQRaBAAGF41"
         );
+
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
