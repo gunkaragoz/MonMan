@@ -88,25 +88,10 @@ namespace MonMan
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //await AuthenticateFacebook();
-            //await AuthenticateTwitter();
-            /*var parameter = e.Parameter as userItem;
-            if (parameter != null)
-            {
-                this.userNameTb.Text = parameter.Username;
-            }
-            else
-            {
-                this.userNameTb.Text = "Could not fetch name.";
-            }*/
-            //this.userNameTb.Text = "";
-            //RefreshTodoItems();
-
-            //this.tbUsername.Text = "Welcome ";
             //GetUsername();
-            //CreateCategoryItem();
             LoadTypeItems();
-            //GetMonthlyData("Income", 1);
+
+            this.tbUsername.Text = "Gün Karagöz";
             RefreshTransactions();
         }
 
@@ -120,16 +105,15 @@ namespace MonMan
 
             public Graph()
             {
-                //float monthlyIncome = await GetMonthlyData("Income",1);
                 MonthlyData = new ObservableCollection<PieChart>();
-                
-                // TODO : Do it dynamic remove hardcoded              
+
+                // TODO : Do it dynamic remove hardcoded
                 MonthlyData.Add(new PieChart() { Category = "Income", Number = monthlyIncome });
                 MonthlyData.Add(new PieChart() { Category = "Expense", Number = monthlyExpense });
 
                 YearlyExpense = new ObservableCollection<ColumnChart>();
 
-                foreach (var item in yearlyExpense)
+                foreach (var item in yearlyTotals)
                 {
                     YearlyExpense.Add(new ColumnChart() { Month = item.Item1, Number = item.Item2 });
                 }
@@ -154,25 +138,16 @@ namespace MonMan
         private static float monthlyIncome = 0;
         private static float monthlyExpense = 0;
 
-        private static List<Tuple<string,float>> yearlyIncome;
-        private static List<Tuple<string, float>> yearlyExpense; 
 
-        private async Task<List<Tuple<string,float>>> GetYearlyData(string type)
+        private static List<Tuple<string, float>> yearlyTotals;
+
+
+        private async Task<List<Tuple<string, float>>> GetYearlyData(string type)
         {
             var yearlyAmount = new List<Tuple<string, float>>();
 
-            // TODO : Get total by year and month
-
-            /*yearlyAmount.Add(new Tuple<string, float>("Oct-13", 100));
-            yearlyAmount.Add(new Tuple<string, float>("Nov-13", 200));
-            yearlyAmount.Add(new Tuple<string, float>("Dec-13", 150));
-            yearlyAmount.Add(new Tuple<string, float>("Jan-14", 120));*/
-
-            string username = "Gün Karagöz";
-            //string username = tbUsername.Text;
-
             var results = await transactionsTable
-                          .Where(transactionItem => transactionItem.transactionUsername == username
+                          .Where(transactionItem => transactionItem.transactionUsername == tbUsername.Text
                               && transactionItem.transactionType == type)
                           .OrderBy(transactionItem => transactionItem.transactionDate)
                           .ToListAsync();
@@ -185,8 +160,6 @@ namespace MonMan
             {
                 for (int i = 0; i < results.Count; i++)
                 {
-                    //outTotals = GetMonthlyData(type, DateTime.Now.Month);
-                    //monthTotalAmount = await outTotals;
 
                     monthName = results[i].transactionDate.ToString("MMM");
                     yearName = results[i].transactionDate.ToString("yy");
@@ -202,17 +175,14 @@ namespace MonMan
 
         private async Task<float> GetMonthlyData(string type, int year, int month)
         {
-            string username = "Gün Karagöz";
-            //string username = tbUsername.Text;
-
 
             float totalAmount = 0;
             var results = await transactionsTable
-                          .Where(transactionItem => transactionItem.transactionUsername == username
+                          .Where(transactionItem => transactionItem.transactionUsername == tbUsername.Text
                               && transactionItem.transactionType == type
                               && transactionItem.transactionDate.Year == year
                               && transactionItem.transactionDate.Month == month)
-                          
+
                           .ToListAsync();
 
             if (results.Count != 0)
@@ -248,19 +218,55 @@ namespace MonMan
         {
             transactionItems = await transactionsTable.ToCollectionAsync();
 
-            var transactionItem = new transactionItem
+            if (isFormFilled())
             {
+                var transactionItem = new transactionItem
+                {
 
-                transactionUsername = "Gün Karagöz", //tbUsername.Text,
-                transactionDate = dateSelection.Date.DateTime, //DateTime.Now,
-                transactionType = (string)comboType.SelectedItem,
-                transactionCategory = (string)comboCategory.SelectedItem,
-                transactionAmount = float.Parse(textAmount.Text),
-                transactionDescription = textDescription.Text
-            };
+                    transactionUsername = tbUsername.Text,
+                    transactionDate = dateSelection.Date.DateTime,
+                    transactionType = (string)comboType.SelectedItem,
+                    transactionCategory = (string)comboCategory.SelectedItem,
+                    transactionAmount = float.Parse(textAmount.Text),
+                    transactionDescription = textDescription.Text
+                };
 
-            InsertTransaction(transactionItem);
+                InsertTransaction(transactionItem);
+                clearFormElements();
+            }
 
+            else
+            {
+                var dialog = new MessageDialog("Please fill required fields in form!");
+                dialog.Commands.Add(new UICommand("OK"));
+                await dialog.ShowAsync();
+            }
+        }
+
+        private bool isFormFilled()
+        {
+            if (dateSelection.Date.DateTime == null
+                    || (string)comboType.SelectedItem == null
+                    || (string)comboCategory.SelectedItem == null
+                    || textAmount.Text == null
+                    || (string)comboType.SelectedItem == ""
+                    || (string)comboCategory.SelectedItem == ""
+                    || textAmount.Text == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void clearFormElements()
+        {
+            comboType.SelectedItem = "";
+            comboCategory.SelectedItem = "";
+            textAmount.Text = "";
+            textDescription.Text = "";
         }
 
 
@@ -288,9 +294,7 @@ namespace MonMan
                     comboCategory.Items.Add(item.Category);
                 }
             }
-
         }
-
 
         private void comboType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -302,8 +306,6 @@ namespace MonMan
 
             CreateNewTransactionItem();
         }
-
-
 
         private async void GetUsername()
         {
@@ -319,7 +321,6 @@ namespace MonMan
                 var jo = JsonObject.Parse(response);
                 var userName = jo["name"].GetString();
                 tbUsername.Text = userName;
-                //this.lblTitle.Text = "Multi-auth Blog: " + userName;
 
                 //InsertUserItem(appUser);
             }
@@ -332,68 +333,33 @@ namespace MonMan
         private async void RefreshTransactions()
         {
 
-            Task<float> inTotals = GetMonthlyData("Income", DateTime.Now.Year, DateTime.Now.Month);
-            monthlyIncome = await inTotals;
-
-            Task<float> outTotals = GetMonthlyData("Expense", DateTime.Now.Year, DateTime.Now.Month);
-            monthlyExpense = await outTotals;
-
-            Task<List<Tuple<string,float>>> inYearly = GetYearlyData("Income");
-            yearlyIncome = await inYearly;
-
-            Task<List<Tuple<string, float>>> outYearly = GetYearlyData("Outcome");
-            yearlyExpense = await inYearly;
-
-            //this.DataContext = this;
-            this.DataContext = new Graph();
-
             gridTransactions.Children.Clear();
-            string username = "Gün Karagöz";
-            //string username = tbUsername.Text;
+
             var results = await transactionsTable
-                          .Where(transactionItem => transactionItem.transactionUsername == username)
+                          .Where(transactionItem => transactionItem.transactionUsername == tbUsername.Text)
+                          .OrderByDescending(transactionItem => transactionItem.transactionDate)
                           .ToListAsync();
 
-            var dialog = new MessageDialog("");
-            if (results.Count == 0)
+            if (results.Count != 0)
             {
-                dialog = new MessageDialog("Transaction history is empty!");
-                dialog.Commands.Add(new UICommand("OK"));
-                //await dialog.ShowAsync();
-            }
-            else
-            {
-                //comboCategory.Items.Clear();
 
 
+                int colNum = 0;
                 // TODO Do it dynamically! Change columns dynamically.
                 for (int i = 0; i < results.Count; i++)
                 {
-                    int colNum = 0;
 
+                    colNum = 0;
                     TextBlock cellRowNum = new TextBlock();
-                    //cellRowNum.Name = "no_" + results[i].Id;
                     cellRowNum.Text = (i + 1).ToString();
-                    cellRowNum.SetValue(Grid.RowProperty, i + 1);
+                    cellRowNum.SetValue(Grid.RowProperty, i);
                     cellRowNum.SetValue(Grid.ColumnProperty, colNum);
                     cellRowNum.Margin = new Thickness(0, (i + 1) * 30, 0, 0);
                     cellRowNum.Style = (Style)(this.Resources["RowStyle"]);
                     gridTransactions.Children.Add(cellRowNum);
-                    // gridTransactions.RowDefinitions();
 
-                    /*
-                    TextBlock cellIsPayed = new TextBlock();
-                    //cellIsPayed.Name = "isPayed_" + results[i].Id;
-                    cellIsPayed.Text = results[i].transactionIsPayed.ToString();
-                    cellIsPayed.SetValue(Grid.RowProperty, i);
-                    cellIsPayed.SetValue(Grid.ColumnProperty, 1);
-                    cellIsPayed.Margin = new Thickness(0, (i+1) * 30, 0, 0);
-                    cellIsPayed.Style = (Style)(this.Resources["RowStyle"]);
-                    gridTransactions.Children.Add(cellIsPayed);
-                     */
                     colNum++;
                     TextBlock cellDate = new TextBlock();
-                    //cellDate.Name = "date_" + results[i].Id;;
                     cellDate.Text = String.Format("{0:dd/MM/yy}", results[i].transactionDate);
                     cellDate.SetValue(Grid.RowProperty, i);
                     cellDate.SetValue(Grid.ColumnProperty, colNum);
@@ -403,7 +369,6 @@ namespace MonMan
 
                     colNum++;
                     TextBlock cellType = new TextBlock();
-                    //cellType.Name = "type_" + results[i].Id;;
                     cellType.Text = results[i].transactionType.ToString();
                     cellType.SetValue(Grid.RowProperty, i);
                     cellType.SetValue(Grid.ColumnProperty, colNum);
@@ -413,7 +378,6 @@ namespace MonMan
 
                     colNum++;
                     TextBlock cellCategory = new TextBlock();
-                    //cellCategory.Name = "categoty_" + results[i].Id;;
                     cellCategory.Text = results[i].transactionCategory.ToString();
                     cellCategory.SetValue(Grid.RowProperty, i);
                     cellCategory.SetValue(Grid.ColumnProperty, colNum);
@@ -423,7 +387,6 @@ namespace MonMan
 
                     colNum++;
                     TextBlock cellAmount = new TextBlock();
-                    //cellAmount.Name = "amount_" + results[i].Id;;
                     cellAmount.Text = results[i].transactionAmount.ToString();
                     cellAmount.SetValue(Grid.RowProperty, i);
                     cellAmount.SetValue(Grid.ColumnProperty, colNum);
@@ -433,7 +396,6 @@ namespace MonMan
 
                     colNum++;
                     TextBlock cellDescription = new TextBlock();
-                    //cellDescription.Name = "desc_" + results[i].Id;;
                     cellDescription.Text = results[i].transactionDescription.ToString();
                     cellDescription.SetValue(Grid.RowProperty, i);
                     cellDescription.SetValue(Grid.ColumnProperty, colNum);
@@ -444,18 +406,37 @@ namespace MonMan
                     colNum++;
                     Button cellDelButton = new Button();
                     cellDelButton.Tag = results[i].Id.ToString();
-                    cellDelButton.Content = "X";
+                    cellDelButton.Content = "x";
                     cellDelButton.SetValue(Grid.RowProperty, i);
                     cellDelButton.SetValue(Grid.ColumnProperty, colNum);
                     cellDelButton.Margin = new Thickness(0, (i + 1) * 30, 0, 0);
-                    cellDelButton.VerticalAlignment = VerticalAlignment.Top;
+                    cellDelButton.VerticalAlignment = VerticalAlignment.Center;
                     cellDelButton.HorizontalAlignment = HorizontalAlignment.Left;
+                    cellDelButton.Style = (Style)(this.Resources["ButtonStyle"]);
                     cellDelButton.Click += deleteButton_Click;
                     gridTransactions.Children.Add(cellDelButton);
 
                 }
             }
+
+
+            string type = "";
+
+            if (radioIncome.IsChecked == true)
+                type = "Income";
+            else
+                type = "Expense";
+
+            yearlyTotals = await GetYearlyData(type);
+            monthlyIncome = await GetMonthlyData("Income", DateTime.Now.Year, DateTime.Now.Month);
+            monthlyExpense = await GetMonthlyData("Expense", DateTime.Now.Year, DateTime.Now.Month);
+
+            setRecommendationText();
+
+            this.DataContext = new Graph();
         }
+
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -464,6 +445,8 @@ namespace MonMan
 
         private async void deleteButton_Click(object sender, RoutedEventArgs e)
         {
+            Button clickedButton = sender as Button;
+
             MessageDialog dialog = new MessageDialog("Are you sure to delete?");
             UICommand okCommand = new UICommand("OK");
             UICommand cancelCommand = new UICommand("Cancel");
@@ -473,7 +456,7 @@ namespace MonMan
 
             IUICommand response = await dialog.ShowAsync();
 
-            Button clickedButton = sender as Button;
+            
 
             if (response == okCommand)
             {
@@ -496,29 +479,103 @@ namespace MonMan
         {
             await transactionsTable.DeleteAsync(transaction);
 
-            //if(transactionItems.TotalCount != null && transactionItems.IndexOf(transaction) != null)
-            //transactionItems.Remove(transaction);
-
         }
 
-
-        private void btn_refreshTransactions(object sender, RoutedEventArgs e)
+        private async void setRecommendationText()
         {
-            
-            //this.DataContext = new Graph();
+            float yearlyIncomeAvg = await getYearlyAvg("Income");
+            float yearlyExpenseAvg = await getYearlyAvg("Expense");
 
-            RefreshTransactions();
+            // Decide to talk about income or outcome
+            if (Math.Abs(yearlyIncomeAvg - monthlyIncome) > Math.Abs(yearlyExpenseAvg - monthlyExpense))
+            {
+                // Income recommendation
+                if (yearlyIncomeAvg > monthlyIncome)
+                {
+                    tbRecommendation.Text = "Current month's income("
+                        + monthlyIncome
+                        + ") is less than yearly average("
+                        + yearlyIncomeAvg
+                        + ").  Work harder!";
+                }
+                else if (yearlyIncomeAvg < monthlyIncome)
+                {
+                    tbRecommendation.Text = "Current month's income("
+                        + monthlyIncome
+                        + ") is more than yearly average ("
+                        + yearlyIncomeAvg
+                        + "). Think about investment!";
+                }
+                else
+                {
+                    tbRecommendation.Text = "Current month's income("
+                        + monthlyIncome
+                        + ") is exactly on yearly average ("
+                        + yearlyIncomeAvg
+                        + "). Go on your life!";
+                }
+
+            }
+            else
+            {
+                // Expense receommendation
+                if (yearlyExpenseAvg > monthlyExpense)
+                {
+                    tbRecommendation.Text = "Current month's expense("
+                        + monthlyExpense
+                        + ") is less than yearly average ("
+                        + yearlyExpenseAvg
+                        + "). What about new movies this week?";
+                }
+                else if (yearlyExpenseAvg < monthlyExpense)
+                {
+                    tbRecommendation.Text = "Current month's expense("
+                        + monthlyExpense
+                        + ") is more than yearly average ("
+                        + yearlyExpenseAvg
+                        + "). Stay home a bit!";
+                }
+
+                else
+                {
+                    tbRecommendation.Text = "Current month's income("
+                        + monthlyIncome
+                        + ") is exactly on yearly average ("
+                        + yearlyIncomeAvg
+                        + "). Go on your life!";
+                }
+            }
         }
-        //TODO : Check if data entry empty.
-        //TODO : Clear form after entry
-        //TODO : Repair twitter authentication
-        //TODO : Grid Scroll
-        //TODO : Add Recommendations
 
+        private async Task<float> getYearlyAvg(string type)
+        {
+            float yearlyAvg = 0;
+            float yearlyTotal = 0;
+
+            List<Tuple<string, float>> yearlyTotalData = await GetYearlyData(type);
+
+            foreach (var item in yearlyTotalData)
+            {
+                yearlyTotal += item.Item2;
+            }
+
+            yearlyAvg = yearlyTotal / yearlyTotalData.Count;
+
+            return yearlyAvg;
+        }
 
 
         /*  ----- TESTS & NOT IMPLEMENTED YET ----- */
-        // TODO : To Be Implemented in Next Versions
+
+        private void btn_refreshTransactions(object sender, RoutedEventArgs e)
+        {
+
+            RefreshTransactions();
+        }
+
+        //TODO : Repair twitter authentication
+        //TODO : Grid Scroll
+
         private void CreateCategoryItem()
         {
             /*var categoryItem = new categoryItem { Type = "Income", Category = "Salary" };
@@ -550,21 +607,42 @@ namespace MonMan
 
         private void CreateDummyTransaction()
         {
+
             Random rand = new Random();
+
+            DateTime start = new DateTime(2012, 1, 1);
+            var range = DateTime.Now - start;
+            var randTimeSpan = new TimeSpan((long)(rand.NextDouble() * range.Ticks));
+            DateTime randomDate =  start + randTimeSpan;
+
             var types = new List<string> { "Income", "Expense" };
             int indType = rand.Next(types.Count);
 
-            var categories = new List<string> { "Entertainment", "Bills", "Groceries", "Investment" };
+            var categories = new List<string>();
+            if (indType == 0)
+            {
+                categories.Add("Salary");
+                categories.Add("Asset");
+            }
+            else
+            {
+                categories.Add("Entertainment");
+                categories.Add("Bills");
+                categories.Add("Groceries");
+                categories.Add("Investment");
+            }
             int indCat = rand.Next(categories.Count);
+
+
 
             var transactionItem = new transactionItem
             {
-                transactionDate = DateTime.Now,
+                transactionDate = randomDate,
                 transactionType = types[indType],
                 transactionCategory = categories[indCat],
                 transactionAmount = rand.Next(100),
                 transactionDescription = "Test data goes here.",
-                transactionUsername = "Gün Karagöz"
+                transactionUsername = tbUsername.Text
 
             };
             InsertTransaction(transactionItem);

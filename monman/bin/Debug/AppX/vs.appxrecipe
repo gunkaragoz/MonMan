@@ -17,13 +17,13 @@
     <AppXManifest Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2014-01-12T15:11:07.539</Modified>
+      <Modified>2014-01-14T00:28:52.981</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\MonMan.exe">
       <PackagePath>MonMan.exe</PackagePath>
-      <Modified>2014-01-12T22:35:47.990</Modified>
+      <Modified>2014-01-14T01:41:02.439</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\De.TorstenMandelkow.MetroChart.WinRT\bin\Debug\De.TorstenMandelkow.MetroChart.dll">
       <PackagePath>De.TorstenMandelkow.MetroChart.dll</PackagePath>
@@ -103,23 +103,23 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2014-01-12T15:11:05.308</Modified>
+      <Modified>2014-01-14T00:28:51.654</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\LoginPage.xbf">
       <PackagePath>LoginPage.xbf</PackagePath>
-      <Modified>2014-01-12T15:11:05.311</Modified>
+      <Modified>2014-01-14T00:28:51.655</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\Common\QuickStartTask.xbf">
       <PackagePath>Common\QuickStartTask.xbf</PackagePath>
-      <Modified>2014-01-12T15:11:05.313</Modified>
+      <Modified>2014-01-14T00:28:51.657</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\Common\StandardStyles.xbf">
       <PackagePath>Common\StandardStyles.xbf</PackagePath>
-      <Modified>2014-01-12T15:11:05.316</Modified>
+      <Modified>2014-01-14T00:28:51.662</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2014-01-12T15:59:22.570</Modified>
+      <Modified>2014-01-14T01:38:32.829</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\De.TorstenMandelkow.MetroChart.WinRT\bin\Debug\De.TorstenMandelkow.MetroChart\Themes\Generic.xbf">
       <PackagePath>De.TorstenMandelkow.MetroChart\Themes\Generic.xbf</PackagePath>
@@ -127,7 +127,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gün\SkyDrive\Belgeler\OZU393\CS393-Project\MonMan\monman\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2014-01-12T21:50:05.069</Modified>
+      <Modified>2014-01-14T01:41:02.646</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
